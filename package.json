@@ -1,0 +1,24 @@
+{
+  "name": "cours",
+  "version": "1.0.0",
+  "description": "Cours pour les Classes DI-2 de IMSET",
+  "scripts": {
+    "build": "md-to-pdf **/*.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IMSET-Sousse/cours.git"
+  },
+  "keywords": [
+    "IMSET",
+    "DI-2",
+    "Cours"
+  ],
+  "author": "Maher AMARA",
+  "license": "UNLICENSED",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/IMSET-Sousse/cours/issues"
+  },
+  "homepage": "https://github.com/IMSET-Sousse/cours#readme"
+}
