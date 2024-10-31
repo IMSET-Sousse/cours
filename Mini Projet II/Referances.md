@@ -1,7 +1,7 @@
 https://www.geeksforgeeks.org/software-development-life-cycle-sdlc/
 https://www.geeksforgeeks.org/waterfall-model 
 https://www.geeksforgeeks.org/software-engineering-sdlc-v-model/
-https://www.geeksforgeeks.org/what-is-agile-methodology/ 
-https://www.geeksforgeeks.org/what-is-kanban/ 
+https://www.geeksforgeeks.org/what-is-agile-methodology/
+https://www.geeksforgeeks.org/what-is-kanban/
 https://www.geeksforgeeks.org/scrum-software-development/
 https://scrumguides.org/scrum-guide.html
