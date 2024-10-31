@@ -10,7 +10,6 @@
   - Documentation des besoins détaillés
 - **Livrables :**
   - Document de spécification des exigences (SRS)
-  - Liste des fonctionnalités prioritaires
   - Critères d'acceptation
 - **Ressources :**
   - Chef de projet
@@ -57,7 +56,7 @@
   - Rapports de tests
   - Liste des bugs corrigés
 - **Ressources :**
-  - Testeurs
+  - Testeurs (QA)
 - **Durée estimée :** 2 semaines
 
 ### Phase 5 : Déploiement
@@ -74,6 +73,19 @@
   - Équipe de déploiement
   - Formateur
 - **Durée estimée :** 1 semaine
+
+### Phase 6 : Maintenance
+
+- **Activités principales :**
+  - Surveillance en production
+  - Correction de bugs
+  - Mises à jour
+- **Livrables :**
+  - Rapports de maintenance
+  - Liste des bugs corrigés
+- **Ressources :**
+  - Support technique
+- **Durée estimée :** 1 semaine ( maintenance continue )
 
 ### Planning séquentiel
 
