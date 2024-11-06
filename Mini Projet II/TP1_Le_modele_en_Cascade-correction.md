@@ -21,12 +21,12 @@
 #### Phase 2 : Conception
 
 - **Activités principales :**
-  - Conception de l'architecture système
   - Design de la base de données (tables livres, membres, emprunts)
+  - Conception de l'architecture système
   - Conception des interfaces utilisateur
 - **Livrables :**
-  - Document de conception détaillée
   - Schéma de la base de données
+  - Document de conception détaillée
   - Maquettes des interfaces
 - **Ressources :**
   - Architecte logiciel
@@ -36,13 +36,13 @@
 #### Phase 3 : Développement
 
 - **Activités principales :**
-  - Développement des fonctionnalités CRUD pour livres et membres
-  - Implémentation du système d'emprunt/retour
-  - Développement des rapports
+  - Développement des fonctionnalités
+  - Développement des tests unitaires
+  - Documentation technique
 - **Livrables :**
   - Code source
-  - Documentation technique
   - Tests unitaires
+  - Documentation
 - **Ressources :**
   - Développeurs (2-3)
 - **Durée estimée :** 6 semaines
@@ -53,6 +53,7 @@
   - Tests fonctionnels
   - Tests d'intégration
   - Tests de performance
+  - Tests d'acceptation avec le client
 - **Livrables :**
   - Plan de tests
   - Rapports de tests
@@ -65,8 +66,8 @@
 
 - **Activités principales :**
   - Installation en production
-  - Formation des bibliothécaires
   - Documentation utilisateur
+  - Formation des bibliothécaires
 - **Livrables :**
   - Application déployée
   - Manuel utilisateur
