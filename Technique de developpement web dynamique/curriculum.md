@@ -4,7 +4,25 @@
 
 12 weeks
 
-## Séance 1: Types de données Python et leurs manipulations
+## Séance 1: Introduction Développement Web Dynamique avec Python
+
+### Objectifs
+
+- Comprendre les bases du développement web dynamique
+- Introduction à Python pour le développement web
+
+### Contenu
+
+- Présentation du développement web dynamique
+- Introduction à Python et ses avantages pour le web
+- Installation et configuration de l'environnement de développement
+
+### Exercices pratiques réalisés
+
+- Installation de Python et des outils nécessaires
+- Premier script Python pour le web
+
+## Séance 2: Types de données
 
 ### Objectifs
 
@@ -27,73 +45,69 @@
 - Création d'une calculatrice multi-types
 - Gestion d'une collection de données avec différentes structures
 
-## Séance 2: Structures de contrôle et fonctions
+## Séance 3: Méthodes sur les types de données
 
 ### Objectifs
 
-- Maîtriser les structures conditionnelles et les boucles
-- Créer et utiliser des fonctions avec différents types de paramètres
-- Comprendre la portée des variables et les fonctions lambda
+- Approfondir les méthodes spécifiques à chaque type de données
+- Utiliser efficacement les méthodes pour manipuler les données
 
 ### Contenu
 
-- Structures conditionnelles avancées
-- Boucles for avec enumerate et zip
-- Compréhensions de liste, dict et set
-- Fonctions: paramètres positionnels, nommés, *args, **kwargs
-- Fonctions lambda et fonctions d'ordre supérieur
-- Gestion des erreurs avec try/except
+- Méthodes des chaînes de caractères (str): split, join, replace, etc.
+- Méthodes des listes et tuples: append, extend, pop, etc.
+- Méthodes des dictionnaires: keys, values, items
+- Méthodes des ensembles (set): add, remove, union, intersection
 
-### Exercice pratique
+### Exercices pratiques réalisés
 
-Développer une bibliothèque de fonctions utilitaires pour manipulation de données
+- Manipulation avancée de chaînes de caractères
+- Utilisation des méthodes de listes et dictionnaires pour résoudre des problèmes complexes
 
-## Séance 3: Programmation Orientée Objet en Python - Partie 1
+## Séance 4: Les opérateurs arithmétiques
 
 ### Objectifs
 
-- Comprendre les concepts fondamentaux de la POO
-- Créer des classes et objets en Python
-- Maîtriser l'encapsulation
+- Comprendre et utiliser les opérateurs arithmétiques en Python
+- Appliquer les opérateurs arithmétiques dans des contextes variés
 
 ### Contenu
 
-- Introduction à la POO
-- Classes et objets
-- Constructeurs et méthodes
-- Encapsulation et propriétés
-- Attributs d'instance et de classe
+- Opérateurs de base: addition, soustraction, multiplication, division
+- Opérateurs avancés: modulo, puissance, division entière
+- Priorité des opérateurs et parenthèses
 
-### Exercice pratique
+### Exercices pratiques réalisés
 
-Créer une classe de base pour gérer des utilisateurs
+- Création de fonctions mathématiques utilisant les opérateurs arithmétiques
+- Résolution de problèmes mathématiques avec Python
 
-## Séance 4: Programmation Orientée Objet en Python - Partie 2
+## Séance 5: Les opérations logiques et structures conditionnelles
 
 ### Objectifs
 
-- Approfondir les concepts de POO
-- Utiliser l'héritage et le polymorphisme
-- Maîtriser les méthodes spéciales
+- Maîtriser les opérations logiques en Python
+- Utiliser les structures conditionnelles pour contrôler le flux du programme
 
 ### Contenu
 
-- Héritage et composition
-- Polymorphisme
-- Méthodes spéciales (__str__, __repr__, etc.)
-- Méthodes de classe et statiques
-- Classes abstraites
+- Opérations logiques: and, or, not
+- Structures conditionnelles: if, elif, else
+- Combinaison d'opérations logiques et conditionnelles
 
-### Exercice pratique
+### Exercices pratiques réalisés
 
-Étendre la classe utilisateur avec différents types de contenus web
+- Développement de scripts utilisant des conditions complexes
+- Création de programmes interactifs basés sur des décisions logiques
 
-## Séance 5: Introduction au Web et HTTP - Partie 1
+## Séance 6: Introduction au Web et HTTP
 
 ### Objectifs
 
 - Comprendre l'architecture client-serveur
 - Maîtriser les bases du protocole HTTP
+- Créer un serveur web simple
+- Gérer les routes basiques
 
 ### Contenu
 
@@ -101,28 +115,15 @@ Créer une classe de base pour gérer des utilisateurs
 - Méthodes HTTP et codes de statut
 - Headers HTTP et types MIME
 - URLs et paramètres
-
-### Exercice pratique
-
-Analyser et comprendre les échanges HTTP avec des outils de développement
-
-## Séance 6: Introduction au Web et HTTP - Partie 2
-
-### Objectifs
-
-- Créer un serveur web simple
-- Gérer les routes basiques
-
-### Contenu
-
 - Création d'un serveur avec http.server
 - Gestion des routes basiques
 - Configuration du serveur
 - Gestion des erreurs HTTP
 
-### Exercice pratique
+### Exercices pratiques réalisés
 
-Développer un serveur HTTP personnalisé avec routage simple
+- Analyser et comprendre les échanges HTTP avec des outils de développement
+- Développer un serveur HTTP personnalisé avec routage simple
 
 ## Séance 7: Gestion des requêtes HTTP
 
