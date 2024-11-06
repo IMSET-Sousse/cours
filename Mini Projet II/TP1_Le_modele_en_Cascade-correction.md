@@ -2,21 +2,23 @@
 
 ## Exercice 1 : Élaboration d'un plan de projet en Cascade
 
-### Phase 1 : Analyse des besoins
+### 1. phases du modèle en cascade
+
+#### Phase 1 : Analyse des besoins
 
 - **Activités principales :**
   - Réunions avec le client pour comprendre les besoins
   - Analyse des exigences fonctionnelles (gestion livres, membres, emprunts, rapports)
   - Documentation des besoins détaillés
 - **Livrables :**
-  - Document de spécification des exigences (SRS)
+  - Document de spécification des exigences
   - Critères d'acceptation
 - **Ressources :**
   - Chef de projet
   - Analyste fonctionnel
 - **Durée estimée :** 2 semaines
 
-### Phase 2 : Conception
+#### Phase 2 : Conception
 
 - **Activités principales :**
   - Conception de l'architecture système
@@ -24,14 +26,14 @@
   - Conception des interfaces utilisateur
 - **Livrables :**
   - Document de conception détaillée
-  - Maquettes des interfaces
   - Schéma de la base de données
+  - Maquettes des interfaces
 - **Ressources :**
   - Architecte logiciel
   - Designer UI/UX
 - **Durée estimée :** 3 semaines
 
-### Phase 3 : Développement
+#### Phase 3 : Développement
 
 - **Activités principales :**
   - Développement des fonctionnalités CRUD pour livres et membres
@@ -45,7 +47,7 @@
   - Développeurs (2-3)
 - **Durée estimée :** 6 semaines
 
-### Phase 4 : Tests
+#### Phase 4 : Tests
 
 - **Activités principales :**
   - Tests fonctionnels
@@ -59,7 +61,7 @@
   - Testeurs (QA)
 - **Durée estimée :** 2 semaines
 
-### Phase 5 : Déploiement
+#### Phase 5 : Déploiement
 
 - **Activités principales :**
   - Installation en production
@@ -74,7 +76,7 @@
   - Formateur
 - **Durée estimée :** 1 semaine
 
-### Phase 6 : Maintenance
+#### Phase 6 : Maintenance
 
 - **Activités principales :**
   - Surveillance en production
@@ -87,7 +89,7 @@
   - Support technique
 - **Durée estimée :** 1 semaine ( maintenance continue )
 
-### Planning séquentiel
+### 2. Planning séquentiel
 
 **Jalons principaux :**
 
@@ -113,3 +115,25 @@
 - Le déploiement nécessite la validation des tests
 
 Durée totale estimée : 14 semaines
+
+### 3. Identiﬁer les risques et déﬁs potentiels de l'approche en Cascade:
+
+   a) Risques liés aux exigences :
+      - Mauvaise compréhension initiale des besoins du client
+      - Changements des besoins en cours de projet
+      - Documentation incomplète ou imprécise des spécifications
+
+   b) Risques liés à la planification :
+      - Sous-estimation des délais
+      - Dépendances rigides entre les phases
+      - Difficulté à paralléliser les tâches
+
+   c) Risques liés à la qualité :
+      - Détection tardive des bugs
+      - Coût élevé des corrections en fin de projet
+      - Tests insuffisants par manque de temps
+
+   d) Risques liés à la communication :
+      - Feedback tardif des utilisateurs
+      - Communication limitée entre les équipes
+      - Résistance au changement de la part des utilisateurs finaux

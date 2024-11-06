@@ -3,6 +3,7 @@
 ## Leçon 1: Introduction à la gestion de projet en développement logiciel
 
 ### Théorie (1h)
+
 - Vue d'ensemble de la gestion de projet et des cycles de vie logiciel (SDLC)
   - Définition et objectifs du SDLC
   - Importance d'une approche structurée

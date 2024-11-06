@@ -33,3 +33,24 @@ Vous êtes chef de projet dans une entreprise de développement logiciel. On vou
    - Les jalons principaux
    - Les points de validation
    - Les dépendances entre les phases
+
+3. Identiﬁer les risques et déﬁs potentiels de l'approche en Cascade:
+   a) Risques liés aux exigences :
+      - Mauvaise compréhension initiale des besoins du client
+      - Changements des besoins en cours de projet
+      - Documentation incomplète ou imprécise des spécifications
+
+   b) Risques liés à la planification :
+      - Sous-estimation des délais
+      - Dépendances rigides entre les phases
+      - Difficulté à paralléliser les tâches
+
+   c) Risques liés à la qualité :
+      - Détection tardive des bugs
+      - Coût élevé des corrections en fin de projet
+      - Tests insuffisants par manque de temps
+
+   d) Risques liés à la communication :
+      - Feedback tardif des utilisateurs
+      - Communication limitée entre les équipes
+      - Résistance au changement de la part des utilisateurs finaux
