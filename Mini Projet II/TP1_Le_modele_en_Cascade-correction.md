@@ -92,30 +92,13 @@
 
 ### 2. Planning séquentiel
 
-**Jalons principaux :**
-
-- J1 : Validation des spécifications (fin phase 1)
-- J2 : Validation de la conception (fin phase 2)
-- J3 : Code freeze (fin phase 3)
-- J4 : Validation des tests (fin phase 4)
-- J5 : Mise en production (fin phase 5)
-
-**Points de validation :**
-
-- Revue des spécifications avec le client
-- Revue de conception technique
-- Démonstration des fonctionnalités développées
-- Validation des tests d'acceptation
-- Formation des utilisateurs
-
-**Dépendances :**
-
-- La conception ne peut démarrer qu'après validation des spécifications
-- Le développement nécessite la validation de la conception
-- Les tests requièrent les fonctionnalités développées
-- Le déploiement nécessite la validation des tests
-
-Durée totale estimée : 14 semaines
+| Phase | Jalons principaux | Points de validation | Dépendances |
+|-------|-------------------|----------------------|-------------|
+| Analyse des besoins | J1 : Validation des spécifications | Revue des spécifications avec le client | - |
+| Conception | J2 : Validation de la conception | Revue de conception technique | La conception ne peut démarrer qu'après validation des spécifications |
+| Développement | J3 : Code freeze | Démonstration des fonctionnalités développées | Le développement nécessite la validation de la conception |
+| Tests | J4 : Validation des tests | Validation des tests d'acceptation | Les tests requièrent les fonctionnalités développées |
+| Déploiement | J5 : Mise en production | Formation des utilisateurs | Le déploiement nécessite la validation des tests |
 
 ### 3. Identiﬁer les risques et déﬁs potentiels de l'approche en Cascade
 
