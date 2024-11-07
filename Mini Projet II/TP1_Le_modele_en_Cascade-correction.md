@@ -117,24 +117,34 @@
 
 Durée totale estimée : 14 semaines
 
-### 3. Identiﬁer les risques et déﬁs potentiels de l'approche en Cascade:
+### 3. Identiﬁer les risques et déﬁs potentiels de l'approche en Cascade
 
-   a) Risques liés aux exigences :
-      - Mauvaise compréhension initiale des besoins du client
-      - Changements des besoins en cours de projet
-      - Documentation incomplète ou imprécise des spécifications
+1. Rigidité du modèle :
+   - Difficulté à s'adapter aux changements de besoins en cours de projet
+   - Phases séquentielles sans possibilité de retour en arrière
+   - Manque de flexibilité pour intégrer de nouvelles fonctionnalités
 
-   b) Risques liés à la planification :
-      - Sous-estimation des délais
-      - Dépendances rigides entre les phases
-      - Difficulté à paralléliser les tâches
+2. Détection tardive des problèmes :
+   - Les bugs ne sont découverts que tard dans le cycle de développement
+   - Coûts élevés des corrections en fin de projet
+   - Risque d'accumulation de dette technique
 
-   c) Risques liés à la qualité :
-      - Détection tardive des bugs
-      - Coût élevé des corrections en fin de projet
-      - Tests insuffisants par manque de temps
+3. Implication limitée des parties prenantes :
+   - Feedback tardif des utilisateurs finaux
+   - Participation réduite du client après la phase initiale
+   - Risque de développer un produit ne répondant pas aux attentes
 
-   d) Risques liés à la communication :
-      - Feedback tardif des utilisateurs
-      - Communication limitée entre les équipes
-      - Résistance au changement de la part des utilisateurs finaux
+4. Contraintes de planification :
+   - Difficulté à estimer précisément les délais au début du projet
+   - Dépendances strictes entre les phases ralentissant le développement
+   - Impossibilité de livrer des versions intermédiaires fonctionnelles
+
+5. Documentation excessive :
+   - Temps important consacré à la documentation formelle
+   - Risque de documentation obsolète si changements
+   - Surcharge administrative au détriment du développement
+
+6. Risques liés à l'intégration :
+   - Intégration tardive des composants
+   - Problèmes d'incompatibilité découverts tardivement
+   - Difficultés à corriger les problèmes d'architecture
