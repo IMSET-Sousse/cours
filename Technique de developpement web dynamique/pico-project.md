@@ -143,7 +143,7 @@
    - Taper '/q' comme opération, vérifier que le programme se termine
 
    ```python
-   Donner X: /q
+   Donner Operation (+, -, *, /, //, %, **): /q
    Program terminated
    ```
 
