@@ -15,9 +15,11 @@ Créez un programme qui :
 Exemple de sortie avec nombre1 = 5.2 et nombre2 = 3.0:
 
 ```python
-5.2 + 3.0 = 8.2
-5.2 * 3.0 = 15.6
-5.2 ** 3.0 = 140.608
+Entrez le premier nombre: 5.2
+Entrez le deuxième nombre: 3
+5.2  +  3.0  =  8.2
+5.2  *  3.0  =  15.600000000000001
+5.2  **  3.0  =  140.608
 ```
 
 ## Exercice 2 : Structures conditionnelles
@@ -32,6 +34,7 @@ Créez un programme qui :
 Exemple de sortie avec nombre = 5:
 
 ```python
+Entrez un nombre: 5
 5 est positif et impair
 ```
 
@@ -46,6 +49,7 @@ Demande à l'utilisateur de saisir un nombre N:
 Exemple de sortie avec nombre = 5:
 
 ```python
+Entrez un nombre: 5
 La somme des nombres de 1 à 5 est 15
 La factorielle de 5 est 120
 ```
