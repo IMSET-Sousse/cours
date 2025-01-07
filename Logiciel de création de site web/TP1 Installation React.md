@@ -40,7 +40,15 @@
    npm --version
    ```
 
-   Cette commande affiche la version de npm installée. npm est le gestionnaire de paquets de Node.js, essentiel pour installer les dépendances React.
+   npm (Node Package Manager) est le gestionnaire de paquets de Node.js. Il permet d'installer, de gérer et de partager des packages JavaScript. C'est l'outil principal pour installer les dépendances de votre projet React.
+
+   Pour vérifier npx :
+
+   ```bash
+   npx --version
+   ```
+
+   npx est un exécuteur de paquets npm qui permet d'exécuter des packages sans avoir à les installer globalement. Il est particulièrement utile pour exécuter des commandes ponctuelles comme create-react-app, qui ne nécessitent pas une installation permanente sur votre système.
 
 ### 2. Configuration de l'environnement de développement
 
