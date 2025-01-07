@@ -26,10 +26,21 @@
 
 2. Vérifiez l'installation en ouvrant un terminal :
 
+   Pour vérifier Node.js :
+
    ```bash
    node --version
+   ```
+
+   Cette commande affiche la version de Node.js installée, confirmant que l'installation s'est bien déroulée.
+
+   Pour vérifier npm :
+
+   ```bash
    npm --version
    ```
+
+   Cette commande affiche la version de npm installée. npm est le gestionnaire de paquets de Node.js, essentiel pour installer les dépendances React.
 
 ### 2. Configuration de l'environnement de développement
 
