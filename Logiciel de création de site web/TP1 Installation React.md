@@ -165,6 +165,40 @@ npm run eject # Éjecte la configuration (irréversible)
 - [Documentation officielle de React](https://react.dev/)
 - [Create React App documentation](https://create-react-app.dev/)
 
+## Résolution des problèmes courants
+
+### Erreur PowerShell sur Windows
+
+Si vous rencontrez cette erreur lors de l'utilisation de npm:
+
+```
+Impossible de charger le fichier [...].ps1, car l'exécution de scripts est désactivée sur ce système.
+```
+
+Cette erreur se produit car les politiques de sécurité de PowerShell empêchent l'exécution de scripts par défaut. Pour résoudre ce problème :
+
+1. Ouvrez PowerShell en tant qu'administrateur :
+   - Appuyez sur Win + S
+   - Tapez "PowerShell"
+   - Clic droit et sélectionnez "Exécuter en tant qu'administrateur"
+
+2. Vérifiez la politique actuelle :
+
+    ```powershell
+    Get-ExecutionPolicy
+    ```
+
+3. Modifiez la politique d'exécution :
+
+    ```powershell
+    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+    ```
+
+   - Tapez 'Y' pour confirmer le changement
+   - `RemoteSigned` permet l'exécution de scripts locaux tout en exigeant une signature pour les scripts téléchargés
+
+4. Redémarrez PowerShell et réessayez la commande initiale
+
 ## Conclusion
 
 Vous avez maintenant une application React fonctionnelle et vous comprenez sa structure de base. Vous pouvez commencer à développer vos propres composants et à explorer les fonctionnalités de React.
