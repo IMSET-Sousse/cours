@@ -112,7 +112,7 @@ mon-app/
    npm start
    ```
 
-2. Votre navigateur devrait s'ouvrir automatiquement à l'adresse : http://localhost:3000
+2. Votre navigateur devrait s'ouvrir automatiquement à l'adresse : <http://localhost:3000>
 
 3. En cas d'erreur :
    - Vérifiez que vous êtes bien dans le dossier du projet
@@ -194,7 +194,7 @@ Cette erreur se produit car les politiques de sécurité de PowerShell empêchen
     Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
     ```
 
-   - Tapez 'Y' pour confirmer le changement
+   - Tapez 'O' pour confirmer le changement
    - `RemoteSigned` permet l'exécution de scripts locaux tout en exigeant une signature pour les scripts téléchargés
 
 4. Redémarrez PowerShell et réessayez la commande initiale
