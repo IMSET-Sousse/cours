@@ -33,20 +33,15 @@
 
 ### 2. Configuration de l'environnement de développement
 
-1. Installation de VS Code (si ce n'est pas déjà fait)
-   - Téléchargez VS Code depuis [code.visualstudio.com](https://code.visualstudio.com/)
-   - Installez les extensions recommandées pour React :
-     - ES7+ React/Redux/React-Native snippets
-     - ESLint
-     - Prettier
-     - Simple React Snippets
-     - Auto Rename Tag
+Installation de VS Code (si ce n'est pas déjà fait)
 
-2. Configuration de Git (optionnel mais recommandé)
-
-   ```bash
-   git init
-   ```
+- Téléchargez VS Code depuis [code.visualstudio.com](https://code.visualstudio.com/)
+- Installez les extensions recommandées pour React :
+  - ES7+ React/Redux/React-Native snippets
+  - ESLint
+  - Prettier
+  - Simple React Snippets
+  - Auto Rename Tag
 
 ### 3. Création d'une nouvelle application React
 
