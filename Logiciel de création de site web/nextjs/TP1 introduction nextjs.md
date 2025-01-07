@@ -78,11 +78,12 @@
    ```bash
    What is your project named? mon-app
    Would you like to use TypeScript? No
-   Would you like to use ESLint? Yes
+   Would you like to use ESLint? Yes  
    Would you like to use Tailwind CSS? No
-   Would you like to use `src/` directory? No
+   Would you like your code inside a `src/` directory? No
    Would you like to use App Router? (recommended) Yes
-   Would you like to customize the default import alias (@/*)? No
+   Would you like to use Turbopack for `next dev`? Yes
+   Would you like to customize the import alias (@/* by default)? No
    ```
 
 ### 4. Structure du projet Next.js
@@ -136,6 +137,7 @@ mon-app/
 ### 6. Lancement et développement
 
 1. Démarrez le serveur de développement :
+
    ```bash
    npm run dev
    ```
