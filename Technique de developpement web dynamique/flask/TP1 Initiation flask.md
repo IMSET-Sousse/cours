@@ -24,30 +24,29 @@
 3. Installer les packages requis avec `pipenv`.
 
 Voici les différentes options :
+Option 1 - Installation directe avec pipenv :
 
-    Option 1 - Installation directe avec pipenv :
+```bash
+pipenv install flask
+```
 
-    ```bash
-    pipenv install flask
-    ```
-    
-    Option 2 - Installation explicite avec python -m :
-    
-    ```bash
-    # Pour Python 3
-    python -m pipenv install flask
-    ```
-    
-    Option 3 - Installation avec python3 explicite :
-    
-    ```bash
-    # Pour les systèmes utilisant python3
-    python3 -m pipenv install flask
-    ```
+Option 2 - Installation explicite avec python -m :
 
-    L'option 1 est recommandée si pipenv est correctement configuré dans votre PATH.
-    L'option 2 est utile si vous avez des problèmes avec l'option 1.
-    L'option 3 est nécessaire sur certains systèmes où python3 doit être explicitement spécifié.
+```bash
+# Pour Python 3
+python -m pipenv install flask
+```
+
+Option 3 - Installation avec python3 explicite :
+
+```bash
+# Pour les systèmes utilisant python3
+python3 -m pipenv install flask
+```
+
+L'option 1 est recommandée si pipenv est correctement configuré dans votre PATH.
+L'option 2 est utile si vous avez des problèmes avec l'option 1.
+L'option 3 est nécessaire sur certains systèmes où python3 doit être explicitement spécifié.
 
 1. Créer un fichier nommé `app.py` et ajouter le code suivant :
 
