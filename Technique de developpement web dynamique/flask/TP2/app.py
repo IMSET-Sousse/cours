@@ -1,18 +1,36 @@
-from flask import Flask, render_template
+from flask import Flask, request
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html', title="Accueil")
+    return 'Bienvenue sur mon application Flask!'
 
 @app.route('/about')
 def about():
-    return render_template('about.html', title="À propos")
+    return 'À propos de nous'
 
-@app.route('/contact')
+# Route avec paramètre string
+@app.route('/user/<username>')
+def user_profile(username):
+    return f'Profil de {username}'
+
+# Route avec paramètre entier
+@app.route('/article/<int:article_id>')
+def show_article(article_id):
+    return f'Article numéro {article_id}'
+
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html', title="Contact")
+    if request.method == 'POST':
+        name = request.form.get('name')
+        return f'Message reçu de {name}'
+    return '''
+        <form method="POST">
+            <input type="text" name="name">
+            <button type="submit">Envoyer</button>
+        </form>
+    '''
 
 if __name__ == '__main__':
     app.run(debug=True)

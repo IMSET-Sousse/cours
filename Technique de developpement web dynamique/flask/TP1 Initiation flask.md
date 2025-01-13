@@ -85,7 +85,13 @@ L'option 3 est nécessaire sur certains systèmes où python3 doit être explici
     python3 -m pipenv shell
     ```
 
-3. Exécuter l'application Flask :
+3. Activer l'environnement virtuel :
+
+    ```bash
+    pipenv shell
+    ```
+
+4. Exécuter l'application Flask :
 
     ```bash
     pipenv run python app.py
