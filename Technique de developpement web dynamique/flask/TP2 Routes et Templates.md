@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
 #### a. Créez le template de base (`templates/base.html`)
 
-```html
+```**html**
 <!DOCTYPE html>
 <html lang="fr">
 <head>
