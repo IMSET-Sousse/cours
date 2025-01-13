@@ -91,6 +91,19 @@ L'option 3 est nécessaire sur certains systèmes où python3 doit être explici
     pipenv run python app.py
     ```
 
+## Structure du Projet
+
+Voici la structure de dossiers attendue pour ce projet :
+
+``` bash
+TP1/
+├── app.py         # Application principale Flask
+├── Pipfile        # Fichier de dépendances Pipenv
+├── Pipfile.lock   # Verrouillage des versions des dépendances
+```
+
+Cette structure est la base recommandée pour un projet Flask.
+
 ## Exercices
 
 1. Modifiez la route principale pour afficher "Bonjour, [votre nom]!" au lieu de "Hello, World!"
