@@ -72,13 +72,17 @@ Installation de VS Code (si ce n'est pas déjà fait)
 
 1. Ouvrez un terminal et naviguez vers le dossier où vous souhaitez créer votre projet
 
-   ```bash
-   cd chemin/vers/votre/dossier
+   Par exemple, si vous voulez créer votre projet sur le Bureau :
+
+   ```powershell
+   cd C:\Users\VotreNom\Desktop
    ```
+
+   > Note : Ne copiez pas exactement ces commandes ! Remplacez "VotreNom" par votre nom d'utilisateur Windows, ou naviguez vers le dossier de votre choix.
 
 2. Créez une nouvelle application React avec Create React App :
 
-   ```bash
+   ```powershell
    npx create-react-app mon-app
    ```
 
@@ -88,6 +92,12 @@ Installation de VS Code (si ce n'est pas déjà fait)
 
    ```bash
    cd mon-app
+   ```
+
+4. Installez web-vitals pour mesurer les performances de l'application :
+
+   ```powershell
+   npm install web-vitals
    ```
 
 ### 4. Structure du projet React
@@ -114,7 +124,7 @@ mon-app/
 
 1. Dans le terminal, à partir du dossier du projet, lancez l'application :
 
-   ```bash
+   ```powershell
    npm start
    ```
 
@@ -150,7 +160,7 @@ mon-app/
 
 ### 7. Commandes utiles
 
-```bash
+```powershell
 npm start    # Démarre le serveur de développement
 npm test     # Lance les tests
 npm run build # Crée une version de production
@@ -177,7 +187,7 @@ npm run eject # Éjecte la configuration (irréversible)
 
 Si vous rencontrez cette erreur lors de l'utilisation de npm:
 
-```
+```powershell
 Impossible de charger le fichier [...].ps1, car l'exécution de scripts est désactivée sur ce système.
 ```
 
