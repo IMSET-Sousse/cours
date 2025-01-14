@@ -1,193 +1,298 @@
-# TP2 Routing in Next.js
+# TP 2 Routing in Next.js
 
 ## Objectifs
 
-- Comprendre le système de routage basé sur les fichiers
-- Implémenter des routes dynamiques
-- Créer des routes imbriquées
-- Utiliser les liens entre pages
-- Maîtriser les groupes de routes et les routes parallèles
+- Comprendre en profondeur le système de routage basé sur les fichiers (App Router)
+- Maîtriser les différents types de routes (statiques, dynamiques, parallèles)
+- Implémenter la navigation entre pages
+- Comprendre les conventions de fichiers spéciaux
+- Utiliser les groupes de routes et les routes parallèles
 
 ## Prérequis
 
 - Avoir complété le TP1
-- Connaissances de base de Next.js
-- Projet Next.js fonctionnel
+- Comprendre les bases de React
+- Avoir une application Next.js fonctionnelle
 
-## 1. Structure de Base du Routage
+## 1. Fondamentaux du Routage Next.js
 
-Le routage dans Next.js est basé sur le système de fichiers dans le dossier `app`. Chaque dossier représente un segment de route.
+Next.js 13+ utilise l'App Router, un système de routage basé sur le système de fichiers où :
 
-### 1.1 Pages Statiques
+- Les dossiers définissent les routes
+- Les fichiers définissent l'UI
 
-Créez les fichiers suivants :
+### Conventions de Fichiers Spéciaux
 
-```jsx
-// app/about/page.js
-export default function About() {
-  return (
-    <div>
-      <h1>À propos</h1>
-      <p>Bienvenue sur la page À propos</p>
-    </div>
-  );
-}
+- `page.js` : Crée une route accessible publiquement
+- `layout.js` : Interface partagée entre plusieurs pages
+- `loading.js` : UI de chargement pour la page
+- `error.js` : UI d'erreur pour la page
+- `not-found.js` : UI pour les pages 404
 
-// app/contact/page.js
-export default function Contact() {
-  return (
-    <div>
-      <h1>Contact</h1>
-      <p>Contactez-nous</p>
-    </div>
-  );
-}
-```
+### Exercice 1.1 : Création de Routes Basiques
 
-## 2. Navigation Entre Pages
+1. Créez la structure de base suivante :
 
-### 2.1 Utilisation du Composant Link
+   ```bash
+   app/
+   ├── page.js           # Route: / (page d'accueil)
+   ├── about/
+   │   └── page.js       # Route: /about
+   └── contact/
+       └── page.js       # Route: /contact
+   ```
 
-Créez un composant de navigation :
+2. Implémentez la page d'accueil :
 
-```jsx
-// app/components/Navigation.js
-import Link from 'next/link';
+   ```jsx
+   // app/page.js
+   export default function HomePage() {
+     return (
+       <div className="container">
+         <h1>Bienvenue sur notre site</h1>
+         <p>Cette page est la page d'accueil.</p>
+       </div>
+     );
+   }
+   ```
 
-export default function Navigation() {
-  return (
-    <nav>
-      <ul>
-        <li><Link href="/">Accueil</Link></li>
-        <li><Link href="/about">À propos</Link></li>
-        <li><Link href="/contact">Contact</Link></li>
-      </ul>
-    </nav>
-  );
-}
-```
+3. Créez la page "À propos" :
 
-### 2.2 Intégration dans le Layout
+   ```jsx
+   // app/about/page.js
+   export default function AboutPage() {
+     return (
+       <div>
+         <h1>À propos de nous</h1>
+         <p>Découvrez notre histoire et notre mission.</p>
+       </div>
+     );
+   }
+   ```
 
-```jsx
-// app/layout.js
-import Navigation from './components/Navigation';
+## 2. Routes Dynamiques
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="fr">
-      <body>
-        <Navigation />
-        {children}
-      </body>
-    </html>
-  );
-}
-```
+Les routes dynamiques permettent de créer des pages avec des paramètres variables dans l'URL.
 
-## 3. Routes Dynamiques
+### Types de Segments Dynamiques
 
-### 3.1 Création d'une Route Dynamique
+1. **Segments Dynamiques** : `[id]` ou `[slug]`
+2. **Segments Catch-all** : `[...slug]`
+3. **Segments Catch-all Optionnels** : `[[...slug]]`
 
-```jsx
-// app/posts/[id]/page.js
-export default function Post({ params }) {
-  return (
-    <div>
-      <h1>Article {params.id}</h1>
-      <p>Contenu de l'article {params.id}</p>
-    </div>
-  );
-}
-```
+### Exercice 2.1 : Création de Routes Dynamiques
 
-### 3.2 Génération des Paramètres
+1. Créez une structure pour un blog :
 
-```jsx
-// app/posts/[id]/page.js
-export async function generateStaticParams() {
-  // Simuler des données d'articles
-  const posts = [1, 2, 3, 4, 5];
-  
-  return posts.map((id) => ({
-    id: id.toString(),
-  }));
-}
-```
+   ```bash
+   app/
+   └── blog/
+       ├── page.js                # Liste des articles
+       ├── [slug]/
+       │   └── page.js           # Article individuel
+       └── categories/
+           └── [...slug]/
+               └── page.js       # Catégories imbriquées
+   ```
 
-## 4. Routes Imbriquées
+2. Implémentez la page d'article dynamique :
 
-Créez une structure de routes imbriquées :
+   ```jsx
+   // app/blog/[slug]/page.js
+   export default function BlogPost({ params }) {
+     return (
+       <article>
+         <h1>Article: {params.slug}</h1>
+         <p>Contenu de l'article...</p>
+       </article>
+     );
+   }
+   ```
 
-```plaintext
-app/
-  ├── blog/
-  │   ├── page.js           # /blog
-  │   ├── [category]/
-  │   │   ├── page.js       # /blog/[category]
-  │   │   └── [post]/
-  │   │       └── page.js   # /blog/[category]/[post]
-```
+3. Implémentez les catégories imbriquées :
 
-```jsx
-// app/blog/[category]/[post]/page.js
-export default function BlogPost({ params }) {
-  return (
-    <div>
-      <h1>Article: {params.post}</h1>
-      <p>Catégorie: {params.category}</p>
-    </div>
-  );
-}
-```
+   ```jsx
+   // app/blog/categories/[...slug]/page.js
+   export default function Category({ params }) {
+     // params.slug est un tableau : ['tech', 'javascript']
+     const categories = params.slug.join(' > ');
+     
+     return (
+       <div>
+         <h1>Catégorie: {categories}</h1>
+         <p>Articles dans cette catégorie...</p>
+       </div>
+     );
+   }
+   ```
 
-## 5. Groupes de Routes
+## 3. Navigation
 
-### 5.1 Création d'un Groupe de Routes
+Next.js fournit plusieurs méthodes pour la navigation entre pages.
 
-```plaintext
-app/
-  ├── (shop)/
-  │   ├── products/
-  │   │   └── page.js
-  │   └── categories/
-  │       └── page.js
-```
+### Exercice 3.1 : Implémentation de la Navigation
 
-### 5.2 Routes Parallèles
+1. Créez un composant de navigation :
 
-```plaintext
-app/
-  ├── @modal/
-  │   └── login/
-  │       └── page.js
-  └── page.js
-```
+   ```jsx
+   // app/components/Navigation.js
+   import Link from 'next/link';
+   import { usePathname } from 'next/navigation';
+
+   export default function Navigation() {
+     const pathname = usePathname();
+
+     return (
+       <nav className="navigation">
+         <ul>
+           <li>
+             <Link 
+               href="/" 
+               className={pathname === '/' ? 'active' : ''}
+             >
+               Accueil
+             </Link>
+           </li>
+           <li>
+             <Link 
+               href="/blog"
+               className={pathname === '/blog' ? 'active' : ''}
+             >
+               Blog
+             </Link>
+           </li>
+           <li>
+             <Link 
+               href="/about"
+               className={pathname === '/about' ? 'active' : ''}
+             >
+               À propos
+             </Link>
+           </li>
+         </ul>
+       </nav>
+     );
+   }
+   ```
+
+2. Ajoutez la navigation programmatique :
+
+   ```jsx
+   // Exemple de composant avec navigation programmatique
+   'use client';
+   
+   import { useRouter } from 'next/navigation';
+
+   export default function LoginButton() {
+     const router = useRouter();
+
+     const handleLogin = async (e) => {
+       e.preventDefault();
+       // Logique de connexion...
+       router.push('/dashboard');
+     };
+
+     return (
+       <button onClick={handleLogin}>
+         Se connecter
+       </button>
+     );
+   }
+   ```
+
+## 4. Groupes de Routes
+
+Les groupes de routes permettent d'organiser les fichiers sans affecter l'URL.
+
+### Exercice 4.1 : Organisation avec des Groupes de Routes
+
+1. Créez une structure pour une zone admin :
+
+   ```bash
+   app/
+   └── (admin)/           # Le parenthèses indiquent un groupe
+       ├── layout.js      # Layout partagé pour l'admin
+       ├── dashboard/
+       │   └── page.js    # /dashboard
+       └── settings/
+           └── page.js    # /settings
+   ```
+
+2. Implémentez le layout admin :
+
+   ```jsx
+   // app/(admin)/layout.js
+   import AdminNav from './components/AdminNav';
+
+   export default function AdminLayout({ children }) {
+     return (
+       <div className="admin-layout">
+         <AdminNav />
+         <main>{children}</main>
+       </div>
+     );
+   }
+   ```
+
+## 5. Routes Parallèles
+
+Les routes parallèles permettent d'afficher plusieurs pages simultanément.
+
+### Exercice 5.1 : Création de Routes Parallèles
+
+1. Créez une structure pour un tableau de bord :
+
+   ```bash
+   app/
+   ├── dashboard/
+   │   ├── layout.js
+   │   ├── page.js
+   │   ├── @analytics/
+   │   │   └── page.js
+   │   └── @team/
+   │       └── page.js
+   ```
+
+2. Implémentez le layout du tableau de bord :
+
+   ```jsx
+   // app/dashboard/layout.js
+   export default function DashboardLayout({ children, analytics, team }) {
+     return (
+       <div className="dashboard-layout">
+         <div className="main-content">{children}</div>
+         <div className="side-panels">
+           <div className="analytics-panel">{analytics}</div>
+           <div className="team-panel">{team}</div>
+         </div>
+       </div>
+     );
+   }
+   ```
 
 ## Exercices Pratiques
 
-1. Créez une structure de blog avec :
-   - Liste des articles
+1. Créez un blog complet avec :
+   - Liste d'articles paginée
    - Pages d'articles individuels
-   - Catégories
-
-2. Implémentez une navigation dynamique :
-   - Menu principal
-   - Fil d'Ariane (Breadcrumb)
+   - Système de catégories
    - Navigation entre articles
 
-3. Créez un groupe de routes pour une section "admin" :
-   - Dashboard
-   - Gestion des articles
-   - Gestion des utilisateurs
+2. Implémentez un espace membre avec :
+   - Pages protégées
+   - Navigation conditionnelle
+   - Redirections automatiques
+   - Gestion des erreurs 404
 
-4. Ajoutez des routes parallèles pour :
-   - Modal de connexion
-   - Panier d'achat
-   - Notifications
+3. Développez un tableau de bord avec :
+   - Routes parallèles pour les widgets
+   - Navigation entre sections
+   - Groupes de routes pour l'organisation
+   - Layouts imbriqués
 
 ## Ressources Supplémentaires
 
 - [Documentation officielle du routage Next.js](https://nextjs.org/docs/app/building-your-application/routing)
-- [Exemples de routes dynamiques](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes)
-- [Guide des routes parallèles](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) 
+- [Guide des routes dynamiques](https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes)
+- [Documentation des groupes de routes](https://nextjs.org/docs/app/building-your-application/routing/route-groups)
+- [Guide des routes parallèles](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes)
