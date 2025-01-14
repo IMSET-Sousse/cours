@@ -108,7 +108,7 @@ mon-app/
 
 ### 5. Premiers pas avec Next.js
 
-1. Modifiez `src/app/page.js` :
+1. Modifiez `app/page.js` :
 
    ```jsx
    export default function HomePage() {
@@ -121,7 +121,7 @@ mon-app/
    }
    ```
 
-2. Modifiez `src/app/layout.js` :
+2. Modifiez `app/layout.js` :
 
    ```jsx
    export const metadata = {
@@ -171,7 +171,7 @@ mon-app/
 
 ## Exercices pratiques
 
-1. Créez une nouvelle page "À propos" dans `src/app/about/page.js`
+1. Créez une nouvelle page "À propos" dans `app/about/page.js`
 2. Ajoutez un composant de navigation entre les pages
 3. Créez un composant client interactif avec le marqueur 'use client'
 4. Utilisez le composant Image de Next.js pour optimiser une image
