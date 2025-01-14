@@ -14,21 +14,26 @@
 - Un éditeur de code (VS Code recommandé)
 - Un terminal de commande
 - Une connexion internet
-- Connaissances de base en HTML, CSS, JavaScript et React([1](https://nextjs.org/docs))
+- Connaissances de base en HTML, CSS, JavaScript et React ([1](https://nextjs.org/docs))
+
+> **Ressources recommandées** :
+> - [HTML & CSS](https://www.w3schools.com/html/)
+> - [JavaScript](https://www.javascript.com/)
+> - [React](https://reactjs.org/)
 
 ## Étapes
 
 ### 1. Installation de Node.js et npm
 
 1. Téléchargez et installez Node.js depuis [nodejs.org](https://nodejs.org/)
-   - Version 18.18 ou ultérieure requise([2](https://nextjs.org/docs/app/getting-started/installation))
+   - Version 15.x ou ultérieure requise ([2](https://nextjs.org/docs/app/getting-started/installation))
    - Choisissez la version LTS (Long Term Support)
 
 2. Vérifiez l'installation en ouvrant un terminal :
 
    Pour vérifier Node.js :
 
-   ```bash
+   ```powershell
    node --version
    ```
 
@@ -36,7 +41,7 @@
 
    Pour vérifier npm :
 
-   ```bash
+   ```powershell
    npm --version
    ```
 
@@ -44,7 +49,7 @@
 
    Pour vérifier npx :
 
-   ```bash
+   ```powershell
    npx --version
    ```
 
@@ -54,10 +59,10 @@
 
 1. Installez VS Code depuis [code.visualstudio.com](https://code.visualstudio.com/)
 2. Installez les extensions recommandées :
-   - ESLint (validation du code)([3](https://nextjs.org/docs/app/building-your-application/configuring/eslint))
+   - ESLint (validation du code) ([3](https://nextjs.org/docs/app/building-your-application/configuring/eslint))
    - ES7+ React/Redux/React-Native snippets
    - Prettier (formatage du code)
-   - Next.js extension (support TypeScript et auto-complétion)([4](https://nextjs.org/docs/app/getting-started/installation))
+   - Next.js extension (support TypeScript et auto-complétion) ([4](https://nextjs.org/docs/app/getting-started/installation))
 
 ### 3. Création d'une nouvelle application Next.js
 
@@ -69,17 +74,17 @@
    cd C:\Users\VotreNom\Desktop
    ```
 
-   > Note : Ne copiez pas exactement ces commandes ! Remplacez "VotreNom" par votre nom d'utilisateur Windows, ou naviguez vers le dossier de votre choix.
+   > **Note** : Ne copiez pas exactement ces commandes ! Remplacez "VotreNom" par votre nom d'utilisateur Windows, ou naviguez vers le dossier de votre choix.
 
-2. Créez une nouvelle application Next.js([2](https://nextjs.org/docs/app/getting-started/installation)) :
+2. Créez une nouvelle application Next.js ([2](https://nextjs.org/docs/app/getting-started/installation)) :
 
-   ```bash
+   ```powershell
    npx create-next-app@latest
    ```
 
 3. Répondez aux questions de configuration :
 
-   ```bash
+   ```powershell
    What is your project named? mon-app
    Would you like to use TypeScript? No
    Would you like to use ESLint? Yes  
@@ -94,7 +99,7 @@
 
 Explorez la structure de base de votre projet :
 
-```bash
+```powershell
 mon-app/
   ├── app/             # Dossier principal de l'application
   │   ├── layout.js    # Layout racine
@@ -142,7 +147,7 @@ mon-app/
 
 1. Démarrez le serveur de développement :
 
-   ```bash
+   ```powershell
    npm run dev
    ```
 
@@ -161,7 +166,7 @@ mon-app/
    }
    ```
 
-## Fonctionnalités principales de Next.js([5](https://nextjs.org/docs))
+## Fonctionnalités principales de Next.js ([5](https://nextjs.org/docs))
 
 - **Server Components** : Composants React rendus côté serveur par défaut
 - **Client Components** : Composants interactifs avec le marqueur 'use client'
