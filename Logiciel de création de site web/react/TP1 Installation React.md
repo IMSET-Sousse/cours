@@ -1,5 +1,7 @@
 # TP 1 Installation et Configuration de React
 
+![React Logo](assets/react-logo.png)
+
 ## Objectifs
 
 - Installer Node.js et npm
@@ -10,6 +12,8 @@
 - Comprendre les composants essentiels
 
 ## Prérequis
+
+![VS Code Logo](assets/vscode-logo.png)
 
 - Un éditeur de code (VS Code recommandé)
 - Un terminal de commande
@@ -61,6 +65,8 @@ Installation de VS Code (si ce n'est pas déjà fait)
   - Prettier
   - Simple React Snippets
   - Auto Rename Tag
+
+![React Recommanded Extentions](assets/react-recommanded-extentions.png)
 
 ### 3. Création d'une nouvelle application React
 
