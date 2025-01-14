@@ -117,6 +117,7 @@ mon-app/
   │   ├── index.js     # Point d'entrée
   │   └── index.css    # Styles globaux
   ├── package.json     # Configuration du projet
+  ├── package-lock.json
   └── README.md        # Documentation
 ```
 
@@ -157,15 +158,6 @@ mon-app/
    ```
 
 2. Observez les changements en temps réel dans votre navigateur
-
-### 7. Commandes utiles
-
-```powershell
-npm start    # Démarre le serveur de développement
-npm test     # Lance les tests
-npm run build # Crée une version de production
-npm run eject # Éjecte la configuration (irréversible)
-```
 
 ## Points importants à retenir
 
