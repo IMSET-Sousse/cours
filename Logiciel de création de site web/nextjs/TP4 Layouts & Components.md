@@ -1,9 +1,9 @@
-# TP4 Layouts & Components
+# TP 4 Layouts & Components
 
 ## Objectifs
 
 - Maîtriser les layouts racine et imbriqués
-- Implémenter des interfaces de chargement (Loading UI)
+- Implémenter des interfaces de chargement
 - Gérer les erreurs efficacement
 - Configurer les métadonnées
 - Créer des composants réutilisables
@@ -12,11 +12,13 @@
 
 - Avoir complété le TP3
 - Comprendre les Server et Client Components
-- Connaissances de base en React
+- Connaître les bases du routage Next.js
 
 ## 1. Root Layout
 
-### 1.1 Configuration du Layout Racine
+### Exercice 1.1 : Configuration du Layout Racine
+
+1. Créez un layout racine personnalisé :
 
 ```jsx
 // app/layout.js
@@ -32,7 +34,7 @@ export const metadata = {
     template: '%s | Mon Site',
     default: 'Mon Site',
   },
-  description: 'Description de mon site',
+  description: 'Un site créé avec Next.js',
   keywords: ['Next.js', 'React', 'JavaScript'],
 };
 
@@ -41,7 +43,7 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <body className={inter.className}>
         <Header />
-        <main className="container mx-auto px-4">
+        <main className="min-h-screen p-4">
           {children}
         </main>
         <Footer />
@@ -51,92 +53,48 @@ export default function RootLayout({ children }) {
 }
 ```
 
-### 1.2 Composants de Base
-
-```jsx
-// app/components/Header.js
-import Link from 'next/link';
-
-export default function Header() {
-  return (
-    <header className="bg-white shadow">
-      <nav className="container mx-auto px-4 py-6">
-        <ul className="flex space-x-4">
-          <li><Link href="/">Accueil</Link></li>
-          <li><Link href="/blog">Blog</Link></li>
-          <li><Link href="/contact">Contact</Link></li>
-        </ul>
-      </nav>
-    </header>
-  );
-}
-
-// app/components/Footer.js
-export default function Footer() {
-  return (
-    <footer className="bg-gray-100 mt-8">
-      <div className="container mx-auto px-4 py-6">
-        <p>&copy; {new Date().getFullYear()} Mon Site</p>
-      </div>
-    </footer>
-  );
-}
-```
-
 ## 2. Layouts Imbriqués
 
-### 2.1 Layout pour Section Blog
+### Exercice 2.1 : Création de Layouts Spécifiques
+
+1. Créez un layout pour la section blog :
 
 ```jsx
 // app/blog/layout.js
-import Sidebar from './components/Sidebar';
-
-export const metadata = {
-  title: 'Blog',
-};
+import Sidebar from '../components/blog/Sidebar';
 
 export default function BlogLayout({ children }) {
   return (
-    <div className="flex gap-6">
-      <div className="w-3/4">
+    <div className="grid grid-cols-12 gap-4">
+      <aside className="col-span-3">
+        <Sidebar />
+      </aside>
+      <div className="col-span-9">
         {children}
       </div>
-      <Sidebar className="w-1/4" />
     </div>
-  );
-}
-
-// app/blog/components/Sidebar.js
-export default function Sidebar() {
-  return (
-    <aside>
-      <h2>Catégories</h2>
-      <ul>
-        <li>Technologie</li>
-        <li>Design</li>
-        <li>Business</li>
-      </ul>
-    </aside>
   );
 }
 ```
 
 ## 3. Loading UI
 
-### 3.1 Loading Global
+### Exercice 3.1 : Implémentation des États de Chargement
+
+1. Créez un composant de chargement global :
 
 ```jsx
 // app/loading.js
 export default function Loading() {
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
     </div>
   );
 }
 ```
 
-### 3.2 Loading Spécifique
+2. Créez un composant de chargement spécifique :
 
 ```jsx
 // app/blog/loading.js
@@ -159,28 +117,23 @@ export default function BlogLoading() {
 
 ## 4. Gestion des Erreurs
 
-### 4.1 Error Boundary Global
+### Exercice 4.1 : Configuration de la Gestion d'Erreurs
+
+1. Créez un composant d'erreur global :
 
 ```jsx
 // app/error.js
 'use client';
 
-import { useEffect } from 'react';
-
 export default function Error({ error, reset }) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">
-          Une erreur est survenue
-        </h2>
+        <h2 className="text-2xl font-bold mb-4">Une erreur est survenue</h2>
+        <p className="text-gray-600 mb-4">{error.message}</p>
         <button
           onClick={reset}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
           Réessayer
         </button>
@@ -190,25 +143,23 @@ export default function Error({ error, reset }) {
 }
 ```
 
-### 4.2 Not Found Page
+2. Créez un gestionnaire d'erreurs spécifique :
 
 ```jsx
-// app/not-found.js
-import Link from 'next/link';
+// app/blog/error.js
+'use client';
 
-export default function NotFound() {
+export default function BlogError({ error, reset }) {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h2 className="text-4xl font-bold mb-4">404</h2>
-        <p className="mb-4">Page non trouvée</p>
-        <Link
-          href="/"
-          className="text-blue-500 hover:underline"
-        >
-          Retour à l'accueil
-        </Link>
-      </div>
+    <div className="p-4 border border-red-200 rounded bg-red-50">
+      <h2 className="text-red-800 font-semibold">Erreur de chargement du blog</h2>
+      <p className="text-red-600">{error.message}</p>
+      <button
+        onClick={reset}
+        className="mt-2 text-red-600 hover:text-red-800"
+      >
+        Réessayer
+      </button>
     </div>
   );
 }
@@ -216,7 +167,9 @@ export default function NotFound() {
 
 ## 5. Métadonnées
 
-### 5.1 Configuration Dynamique
+### Exercice 5.1 : Configuration des Métadonnées
+
+1. Configurez les métadonnées dynamiques :
 
 ```jsx
 // app/blog/[slug]/page.js
@@ -235,56 +188,32 @@ export async function generateMetadata({ params }) {
 }
 ```
 
-### 5.2 Composants Réutilisables
-
-```jsx
-// app/components/MetadataImage.js
-import Image from 'next/image';
-
-export default function MetadataImage({ src, alt, width, height }) {
-  return (
-    <div className="relative aspect-video">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        priority
-      />
-    </div>
-  );
-}
-```
-
 ## Exercices Pratiques
 
-1. Créez un layout pour une section admin avec :
-   - Barre latérale de navigation
-   - En-tête avec informations utilisateur
-   - Zone de contenu principale
-   - Gestion des erreurs spécifique
+1. Créez une mise en page complexe avec :
+   - En-tête fixe
+   - Barre latérale responsive
+   - Pied de page collant
+   - Navigation imbriquée
 
-2. Implémentez des composants réutilisables :
-   - Card pour afficher des articles/produits
-   - Pagination
-   - Formulaire de recherche
-   - Boutons d'action
+2. Implémentez un système de chargement avec :
+   - Skeleton loading
+   - Suspense boundaries
+   - Indicateurs de progression
 
-3. Configurez les métadonnées pour :
-   - Pages statiques
-   - Pages dynamiques
-   - Images OpenGraph
-   - Twitter Cards
+3. Développez un système de gestion d'erreurs avec :
+   - Erreurs personnalisées
+   - Journalisation des erreurs
+   - Récupération gracieuse
 
-4. Créez des interfaces de chargement pour :
-   - Liste de produits
-   - Détails d'article
-   - Formulaires
-   - Tableaux de données
+4. Configurez les métadonnées pour :
+   - SEO optimisé
+   - Partage social
+   - Données structurées
 
 ## Ressources Supplémentaires
 
 - [Documentation des Layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts)
-- [Guide des Métadonnées](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
-- [Documentation sur la Gestion des Erreurs](https://nextjs.org/docs/app/building-your-application/routing/error-handling) 
+- [Guide Loading UI](https://nextjs.org/docs/app/building-your-application/routing/loading-ui)
+- [Documentation Error Handling](https://nextjs.org/docs/app/building-your-application/routing/error-handling)
+- [Guide Metadata](https://nextjs.org/docs/app/building-your-application/optimizing/metadata) 
