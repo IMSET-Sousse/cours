@@ -185,6 +185,7 @@ function Card({ title, children }) {
    - Testez avec différents zooms
 
 4. **Responsive Design**
+
    ```css
    .container {
      --columns: 1;

@@ -74,6 +74,7 @@ La factorielle de 5 est 120
 ### Test des calculs
 
 1. Calcul du salaire brut
+
 ```python
 Salaire de base: 1000
 Heures supplémentaires: 10
@@ -83,7 +84,8 @@ Opération (B, C, N, E, F, /q): B
 Salaire brut total = 1300.0
 ```
 
-2. Calcul des cotisations
+1. Calcul des cotisations
+
 ```python
 Salaire de base: 1000
 Heures supplémentaires: 10
@@ -93,7 +95,8 @@ Opération (B, C, N, E, F, /q): C
 Cotisations sociales = 143.00  # 9.18% salarié + 1.82% assurance maladie
 ```
 
-3. Fiche de paie complète
+1. Fiche de paie complète
+
 ```python
 === FICHE DE PAIE TUNISIENNE ===
 Salaire de base:         1000.00 TND
