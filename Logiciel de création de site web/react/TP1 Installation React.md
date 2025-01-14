@@ -55,11 +55,7 @@
    npx est un exécuteur de paquets npm qui permet d'exécuter des packages sans avoir à les installer globalement. Il est particulièrement utile pour exécuter des commandes ponctuelles comme create-react-app, qui ne nécessitent pas une installation permanente sur votre système.
 
    > Note : Si vous rencontrez une erreur d'exécution de script dans PowerShell sur Windows, vous devrez peut-être modifier la politique d'exécution. Ouvrez PowerShell en tant qu'administrateur et exécutez :
-
-   > ```powershell
-   > Set-ExecutionPolicy RemoteSigned
-   > ```
-
+   > `Set-ExecutionPolicy RemoteSigned`
    > Puis sélectionnez [O] Oui pour autoriser l'exécution des scripts.
 
 ### 2. Configuration de l'environnement de développement
