@@ -79,10 +79,10 @@ Installation de VS Code (si ce n'est pas déjà fait)
    Par exemple, si vous voulez créer votre projet sur le Bureau :
 
    ```powershell
-   cd C:\Users\VotreNom\Desktop
+   cd C:\Users\VotreUtilisateurWindows\Desktop
    ```
 
-   > Note : Ne copiez pas exactement ces commandes ! Remplacez "VotreNom" par votre nom d'utilisateur Windows, ou naviguez vers le dossier de votre choix.
+   > Note : Ne copiez pas exactement ces commandes ! Remplacez "VotreUtilisateurWindows" par votre nom d'utilisateur Windows, ou naviguez vers le dossier de votre choix.
 
 2. Créez une nouvelle application React avec Create React App :
 
