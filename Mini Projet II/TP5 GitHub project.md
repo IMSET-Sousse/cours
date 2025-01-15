@@ -49,18 +49,7 @@ Apprendre à mettre en place et gérer un projet agile en utilisant GitHub Proje
       - Choisir le type de champ approprié
       - Configurer les options si nécessaire
 
-3. Configuration des filtres et groupements:
-   a. Cliquer sur le menu déroulant "Group"
-      - Grouper par Status pour une vue Kanban
-      - Grouper par Sprint pour la planification
-      - Grouper par Priority pour la priorisation
-
-   b. Utiliser les filtres pour:
-      - Afficher les items du sprint en cours
-      - Filtrer par assignee
-      - Filtrer par label
-
-4. Configuration initiale du projet:
+3. Configuration initiale du projet:
    a. Ajouter une description du projet:
       - Cliquer sur le menu (⋯) en haut à droite
       - Sélectionner "Settings"
@@ -75,12 +64,12 @@ Apprendre à mettre en place et gérer un projet agile en utilisant GitHub Proje
         * Liens importants
       - Cliquer sur "Save"
 
-5. Configuration des vues:
+4. Configuration des vues:
    - Table (pour le Product Backlog)
    - Board (pour le Sprint en cours)
    - Roadmap (pour la planification)
 
-6. Configuration des colonnes de travail:
+5. Configuration des colonnes de travail:
    - New (nouvelles issues)
    - Backlog (à faire)
    - Ready (prêt à démarrer)
