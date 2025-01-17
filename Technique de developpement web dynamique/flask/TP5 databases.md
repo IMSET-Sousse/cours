@@ -15,7 +15,7 @@
 - Avoir complété le TP4 sur les APIs
 - Connaissances de base en SQL
 - Python et Flask installés
-- PostgreSQL 15 ou plus récent installé et configuré
+- PostgreSQL 16 ou plus récent installé et configuré
 - pgAdmin 4 installé et configuré
 - Un utilisateur PostgreSQL avec les droits d'administration
 
@@ -24,9 +24,9 @@
 ### Installation des Dépendances Python
 
 ```bash
-pip install psycopg2-binary
-pip install flask-sqlalchemy
-pip install flask-migrate
+pipenv install psycopg2-binary
+pipenv install flask-sqlalchemy
+pipenv install flask-migrate
 ```
 
 ### Configuration de Flask avec PostgreSQL
