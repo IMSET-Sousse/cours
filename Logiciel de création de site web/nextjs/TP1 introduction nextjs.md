@@ -105,7 +105,7 @@ Ce TP a pour objectif de vous initier aux bases de Next.js, de vous guider dans 
 
 Explorez la structure de base de votre projet :
 
-```powershell
+```text
 mon-app/
   ├── app/             # Dossier principal de l'application
   │   ├── layout.js    # Layout racine (structure globale HTML)
@@ -119,9 +119,21 @@ mon-app/
 
 ### 5. Premiers Pas avec Next.js
 
+#### Lancement du Serveur de Développement
+
+1. Dans le terminal, lancez le serveur de développement :
+
+   ```powershell
+   npm run dev
+   ```
+
+   *Cette commande démarre le serveur de développement. Vous pouvez visiter [http://localhost:3000](http://localhost:3000) pour voir votre application en action.*
+
+2. Ouvrez votre projet dans VS Code et modifiez le code pour observer l'effet des changements en temps réel grâce à la fonctionnalité Fast Refresh de Next.js 15.
+
 #### Modification de la Page d'Accueil
 
-1. **Fichier `app/page.js`**  
+1. **Fichier `app/page.js`**
    Modifiez ce fichier pour afficher un message de bienvenue :
 
    ```jsx:app/page.js
@@ -158,17 +170,82 @@ mon-app/
    }
    ```
 
-### 6. Lancement et Développement
+### 6. Comprendre les Composants Server et Client
 
-1. Dans le terminal, lancez le serveur de développement :
+Next.js 15 introduit une distinction importante entre les composants Server et Client :
 
-   ```powershell
-   npm run dev
-   ```
+#### Vue d'ensemble
 
-   *Cette commande démarre le serveur de développement. Vous pouvez visiter [http://localhost:3000](http://localhost:3000) pour voir votre application en action.*
+```jsx:app/components/ServerComponent.js
+// Composant Serveur (par défaut)
+// app/components/ServerComponent.js
+export default function ServerComponent() {
+  return <h1>Rendu côté serveur</h1>;
+}
 
-2. Ouvrez votre projet dans VS Code et modifiez le code pour observer l'effet des changements en temps réel grâce à la fonctionnalité Fast Refresh de Next.js 15.
+// Composant Client
+// app/components/ClientComponent.js
+"use client";
+export default function ClientComponent() {
+  return <h1>Rendu côté client</h1>;
+}
+```
+
+> **Important** :
+>
+> - Les composants sont Server Components par défaut
+> - Utilisez "use client" uniquement lorsque vous avez besoin d'interactivité
+
+### 7. Introduction au Styling Global
+
+Next.js permet d'ajouter facilement des styles globaux à votre application. Commençons par quelques styles de base :
+
+1. Ouvrez le fichier `app/globals.css`
+2. Ajoutez ces styles simples :
+
+  ```css:app/globals.css
+  /* Styles de base */
+  body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Style simple pour la navigation */
+  nav {
+    margin-bottom: 20px;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+
+  nav a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  /* Style de base pour les conteneurs */
+  main {
+    padding: 20px;
+  }
+  ```
+
+3. Ces styles sont automatiquement appliqués grâce à l'import dans `app/layout.js` :
+
+```jsx:app/layout.js
+import './globals.css'
+// ... reste du code ...
+```
 
 ## Exercices Pratiques
 
@@ -240,7 +317,7 @@ mon-app/
 
 ### Exercice 3 : Créer un Composant Client Interactif
 
-**Objectif :** Créer un composant interactif qui gère un état local grâce au marqueur `"use client"`.
+**Objectif :** Créer un composant interactif qui gère un état local grâce au marqueur "use client".
 
 1. Créez un composant `Counter` par exemple dans un nouveau dossier `components` :
 
@@ -297,11 +374,11 @@ mon-app/
          <h1>Bienvenue sur mon application Next.js</h1>
          <p>Cette page est rendue côté serveur par défaut grâce à Next.js.</p>
          {/* Utilisation de Next/Image pour une image optimisée */}
-         <Image 
-           src="/chemin/vers/image.jpg" 
-           alt="Description de l'image" 
-           width={600} 
-           height={400} 
+         <Image
+           src="/chemin/vers/image.jpg"
+           alt="Description de l'image"
+           width={600}
+           height={400}
          />
          <Counter />
        </main>
