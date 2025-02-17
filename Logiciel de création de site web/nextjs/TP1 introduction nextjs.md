@@ -1,4 +1,9 @@
-# TP 1 Introduction à Next.js
+# TP 1 : Introduction à Next.js (Version 15)
+
+## Introduction
+
+Next.js est un framework React innovant qui permet de construire des applications web modernes, rapides et performantes tout en simplifiant la configuration grâce à son approche "batteries incluses". La version 15 apporte des améliorations importantes en termes de performance (grâce à Turbopack Dev, Fast Refresh optimisé, etc.) et de stabilité pour des projets en production.
+Ce TP a pour objectif de vous initier aux bases de Next.js, de vous guider dans la création d'une application simple et de vous préparer à explorer ses fonctionnalités avancées par la suite.
 
 ## Objectifs
 
@@ -17,6 +22,7 @@
 - Connaissances de base en HTML, CSS, JavaScript et React ([1](https://nextjs.org/docs))
 
 > **Ressources recommandées** :
+>
 > - [HTML & CSS](https://www.w3schools.com/html/)
 > - [JavaScript](https://www.javascript.com/)
 > - [React](https://reactjs.org/)
@@ -87,7 +93,7 @@
    ```powershell
    What is your project named? mon-app
    Would you like to use TypeScript? No
-   Would you like to use ESLint? Yes  
+   Would you like to use ESLint? Yes
    Would you like to use Tailwind CSS? No
    Would you like your code inside a `src/` directory? No
    Would you like to use App Router? (recommended) Yes
@@ -102,88 +108,211 @@ Explorez la structure de base de votre projet :
 ```powershell
 mon-app/
   ├── app/             # Dossier principal de l'application
-  │   ├── layout.js    # Layout racine
+  │   ├── layout.js    # Layout racine (structure globale HTML)
   │   └── page.js      # Page d'accueil
   ├── public/          # Fichiers statiques (images, fonts, etc.)
   ├── node_modules/    # Dépendances du projet
-  ├── package.json     # Configuration du projet
-  ├── next.config.js   # Configuration Next.js
-  └── README.md        # Documentation
+  ├── package.json     # Dépendances et scripts du projet
+  ├── next.config.js   # Configuration propre à Next.js
+  └── README.md        # Documentation du projet
 ```
 
-### 5. Premiers pas avec Next.js
+### 5. Premiers Pas avec Next.js
 
-1. Modifiez `app/page.js` :
+#### Modification de la Page d'Accueil
 
-   ```jsx
+1. **Fichier `app/page.js`**  
+   Modifiez ce fichier pour afficher un message de bienvenue :
+
+   ```jsx:app/page.js
    export default function HomePage() {
+     // Composant principal de la page d'accueil
      return (
        <main className="container">
+         {/* Affichage du titre principal */}
          <h1>Bienvenue sur mon application Next.js</h1>
-         <p>Cette page est rendue côté serveur par défaut!</p>
+         {/* Paragraphe informatif indiquant que la page est rendue côté serveur */}
+         <p>Cette page est rendue côté serveur par défaut grâce à Next.js.</p>
        </main>
      );
    }
    ```
 
-2. Modifiez `app/layout.js` :
+2. **Fichier `app/layout.js`**
+   Ajustez votre layout racine pour définir les métadonnées et la structure HTML :
 
-   ```jsx
+   ```jsx:app/layout.js
    export const metadata = {
      title: 'Mon Application Next.js',
-     description: 'Créée avec create-next-app',
-   }
+     description: 'Créée avec create-next-app dans Next.js version 15',
+   };
 
    export default function RootLayout({ children }) {
      return (
        <html lang="fr">
-         <body>{children}</body>
+         <body>
+           {children}
+         </body>
        </html>
      );
    }
    ```
 
-### 6. Lancement et développement
+### 6. Lancement et Développement
 
-1. Démarrez le serveur de développement :
+1. Dans le terminal, lancez le serveur de développement :
 
    ```powershell
    npm run dev
    ```
 
-2. Accédez à [http://localhost:3000](http://localhost:3000)
+   *Cette commande démarre le serveur de développement. Vous pouvez visiter [http://localhost:3000](http://localhost:3000) pour voir votre application en action.*
 
-3. Scripts disponibles :
+2. Ouvrez votre projet dans VS Code et modifiez le code pour observer l'effet des changements en temps réel grâce à la fonctionnalité Fast Refresh de Next.js 15.
 
-   ```json
-   {
-     "scripts": {
-       "dev": "next dev",     // Mode développement
-       "build": "next build", // Build de production
-       "start": "next start", // Démarrage en production
-       "lint": "next lint"    // Vérification du code
-     }
+## Exercices Pratiques
+
+### Exercice 1 : Créer une Page "À Propos"
+
+**Objectif :** Créer une nouvelle page qui présente des informations sur vous ou sur votre projet.
+
+1. Dans le dossier `app`, créez un dossier nommé `about`.
+2. Dans ce dossier, créez un fichier `page.js` avec le contenu suivant :
+
+   ```jsx:app/about/page.js
+   export default function AboutPage() {
+     return (
+       <main className="container">
+         <h1>À Propos</h1>
+         <p>Bienvenue sur la page À Propos de mon application Next.js. Ici, vous trouverez des informations sur le projet et son développement.</p>
+       </main>
+     );
    }
    ```
 
-## Fonctionnalités principales de Next.js ([5](https://nextjs.org/docs))
+3. **Vérification :** Accédez à [http://localhost:3000/about](http://localhost:3000/about) pour voir votre nouvelle page.
 
-- **Server Components** : Composants React rendus côté serveur par défaut
-- **Client Components** : Composants interactifs avec le marqueur 'use client'
-- **Routing** : Système de routage basé sur le système de fichiers
-- **Data Fetching** : Récupération des données simplifiée avec async/await
-- **Optimizations** : Optimisations automatiques (images, polices, scripts)
+### Exercice 2 : Ajouter une Navigation Interne
 
-## Exercices pratiques
+**Objectif :** Faciliter la navigation entre pages en ajoutant un composant de lien au layout racine.
 
-1. Créez une nouvelle page "À propos" dans `app/about/page.js`
-2. Ajoutez un composant de navigation entre les pages
-3. Créez un composant client interactif avec le marqueur 'use client'
-4. Utilisez le composant Image de Next.js pour optimiser une image
-5. Implémentez un formulaire de contact simple
+1. Créez un composant de navigation à intégrer dans `app/layout.js` :
 
-## Ressources supplémentaires
+   ```jsx:app/components/Navigation.js
+   import Link from 'next/link';
 
-- [Documentation officielle Next.js](https://nextjs.org/docs)
-- [Learn Next.js](https://nextjs.org/learn)
-- [Examples](https://github.com/vercel/next.js/tree/canary/examples)
+   export default function Navigation() {
+     return (
+       <nav>
+         <ul>
+           <li><Link href="/">Accueil</Link></li>
+           <li><Link href="/about">À Propos</Link></li>
+         </ul>
+       </nav>
+     );
+   }
+   ```
+
+2. Importez et utilisez ce composant dans `app/layout.js` :
+
+   ```jsx:app/layout.js
+   import Navigation from './components/Navigation';
+
+   export const metadata = {
+     title: 'Mon Application Next.js',
+     description: 'Créée avec create-next-app dans Next.js version 15',
+   };
+
+   export default function RootLayout({ children }) {
+     return (
+       <html lang="fr">
+         <body>
+           {/* Insertion de la navigation */}
+           <Navigation />
+           {children}
+         </body>
+       </html>
+     );
+   }
+   ```
+
+3. **Vérification :** Assurez-vous que les liens permettent de naviguer entre les pages sans recharger la page (client-side routing).
+
+### Exercice 3 : Créer un Composant Client Interactif
+
+**Objectif :** Créer un composant interactif qui gère un état local grâce au marqueur `"use client"`.
+
+1. Créez un composant `Counter` par exemple dans un nouveau dossier `components` :
+
+   ```jsx:app/components/Counter.js
+   "use client";
+
+   import React from 'react';
+
+   export default function Counter() {
+     // Utilisation du hook useState pour gérer le compteur
+     const [count, setCount] = React.useState(0);
+
+     return (
+       <div>
+         <p>Valeur du compteur: {count}</p>
+         <button onClick={() => setCount(count + 1)}>Incrémenter</button>
+       </div>
+     );
+   }
+   ```
+
+2. Intégrez ce composant dans la page d'accueil (`app/page.js`) :
+
+   ```jsx:app/page.js
+   import Counter from './components/Counter';
+
+   export default function HomePage() {
+     return (
+       <main className="container">
+         <h1>Bienvenue sur mon application Next.js</h1>
+         <p>Cette page est rendue côté serveur par défaut grâce à Next.js.</p>
+         {/* Insertion du composant interactif */}
+         <Counter />
+       </main>
+     );
+   }
+   ```
+
+3. **Vérification :** Assurez-vous que le compteur s'incrémente à chaque clic sans rechargement complet de la page.
+
+### Exercice 4 : Utiliser le Composant Optimisé pour les Images
+
+**Objectif :** Afficher une image optimisée en utilisant le composant `Image` de Next.js.
+
+1. Modifiez la page d'accueil pour y inclure une image :
+
+   ```jsx:app/page.js
+   import Image from 'next/image';
+   import Counter from './components/Counter';
+
+   export default function HomePage() {
+     return (
+       <main className="container">
+         <h1>Bienvenue sur mon application Next.js</h1>
+         <p>Cette page est rendue côté serveur par défaut grâce à Next.js.</p>
+         {/* Utilisation de Next/Image pour une image optimisée */}
+         <Image 
+           src="/chemin/vers/image.jpg" 
+           alt="Description de l'image" 
+           width={600} 
+           height={400} 
+         />
+         <Counter />
+       </main>
+     );
+   }
+   ```
+
+2. **Vérification :** L'image doit s'afficher correctement et profiter des optimisations automatiques de Next.js pour les images. Pour plus de détails, consultez la [documentation du composant Image](https://nextjs.org/docs/api-reference/next/image).
+
+## Ressources Supplémentaires
+
+- [Documentation officielle de Next.js](https://nextjs.org/docs)
+- [Les nouveautés de Next.js 15](https://nextjs.org/blog/next-15)
+- [Tutoriels et exemples sur GitHub](https://github.com/vercel/next.js/tree/canary/examples)
