@@ -107,14 +107,18 @@ Explorez la structure de base de votre projet :
 
 ```text
 mon-app/
-  ├── app/             # Dossier principal de l'application
-  │   ├── layout.js    # Layout racine (structure globale HTML)
-  │   └── page.js      # Page d'accueil
-  ├── public/          # Fichiers statiques (images, fonts, etc.)
-  ├── node_modules/    # Dépendances du projet
-  ├── package.json     # Dépendances et scripts du projet
-  ├── next.config.js   # Configuration propre à Next.js
-  └── README.md        # Documentation du projet
+  ├── app/                    # Dossier principal de l'application
+  │   ├── components/        # Dossier pour les composants réutilisables
+  │   │   ├── Navigation.jsx # Composant de navigation
+  │   │   └── Counter.jsx    # Composant de compteur
+  │   ├── layout.jsx         # Layout racine (structure globale HTML)
+  │   ├── page.jsx          # Page d'accueil
+  │   └── globals.css       # Styles globaux
+  ├── public/               # Fichiers statiques (images, fonts, etc.)
+  ├── node_modules/         # Dépendances du projet
+  ├── package.json          # Dépendances et scripts du projet
+  ├── next.config.js        # Configuration propre à Next.js
+  └── README.md             # Documentation du projet
 ```
 
 ### 5. Premiers Pas avec Next.js
@@ -133,27 +137,26 @@ mon-app/
 
 #### Modification de la Page d'Accueil
 
-1. **Fichier `app/page.js`**
+1. **Fichier `app/page.jsx`**
    Modifiez ce fichier pour afficher un message de bienvenue :
 
-   ```jsx:app/page.js
+   ```jsx
+   // app/page.jsx
    export default function HomePage() {
-     // Composant principal de la page d'accueil
      return (
        <main className="container">
-         {/* Affichage du titre principal */}
          <h1>Bienvenue sur mon application Next.js</h1>
-         {/* Paragraphe informatif indiquant que la page est rendue côté serveur */}
          <p>Cette page est rendue côté serveur par défaut grâce à Next.js.</p>
        </main>
      );
    }
    ```
 
-2. **Fichier `app/layout.js`**
+2. **Fichier `app/layout.jsx`**
    Ajustez votre layout racine pour définir les métadonnées et la structure HTML :
 
-   ```jsx:app/layout.js
+   ```jsx
+   // app/layout.jsx
    export const metadata = {
      title: 'Mon Application Next.js',
      description: 'Créée avec create-next-app dans Next.js version 15',
@@ -174,18 +177,19 @@ mon-app/
 
 Next.js 15 introduit une distinction importante entre les composants Server et Client :
 
-#### Vue d'ensemble
-
-```jsx:app/components/ServerComponent.js
+```jsx:app/components/ServerComponent.jsx
+// app/components/ServerComponent.jsx
 // Composant Serveur (par défaut)
-// app/components/ServerComponent.js
 export default function ServerComponent() {
   return <h1>Rendu côté serveur</h1>;
 }
+```
 
+```jsx:app/components/ClientComponent.jsx
 // Composant Client
-// app/components/ClientComponent.js
+// app/components/ClientComponent.jsx
 "use client";
+
 export default function ClientComponent() {
   return <h1>Rendu côté client</h1>;
 }
@@ -240,9 +244,9 @@ Next.js permet d'ajouter facilement des styles globaux à votre application. Com
   }
   ```
 
-3. Ces styles sont automatiquement appliqués grâce à l'import dans `app/layout.js` :
+3. Ces styles sont automatiquement appliqués grâce à l'import dans `app/layout.jsx` :
 
-```jsx:app/layout.js
+```jsx:app/layout.jsx
 import './globals.css'
 // ... reste du code ...
 ```
@@ -254,9 +258,10 @@ import './globals.css'
 **Objectif :** Créer une nouvelle page qui présente des informations sur vous ou sur votre projet.
 
 1. Dans le dossier `app`, créez un dossier nommé `about`.
-2. Dans ce dossier, créez un fichier `page.js` avec le contenu suivant :
+2. Dans ce dossier, créez un fichier `page.jsx` avec le contenu suivant :
 
-   ```jsx:app/about/page.js
+   ```jsx:app/about/page.jsx
+   // app/about/page.jsx
    export default function AboutPage() {
      return (
        <main className="container">
@@ -273,9 +278,10 @@ import './globals.css'
 
 **Objectif :** Faciliter la navigation entre pages en ajoutant un composant de lien au layout racine.
 
-1. Créez un composant de navigation à intégrer dans `app/layout.js` :
+1. Créez un composant de navigation dans `app/components/Navigation.jsx` :
 
-   ```jsx:app/components/Navigation.js
+   ```jsx:app/components/Navigation.jsx
+   // app/components/Navigation.jsx
    import Link from 'next/link';
 
    export default function Navigation() {
@@ -290,10 +296,12 @@ import './globals.css'
    }
    ```
 
-2. Importez et utilisez ce composant dans `app/layout.js` :
+2. Importez et utilisez ce composant dans `app/layout.jsx` :
 
-   ```jsx:app/layout.js
+   ```jsx:app/layout.jsx
+   // app/layout.jsx
    import Navigation from './components/Navigation';
+   import './globals.css';
 
    export const metadata = {
      title: 'Mon Application Next.js',
@@ -319,29 +327,32 @@ import './globals.css'
 
 **Objectif :** Créer un composant interactif qui gère un état local grâce au marqueur "use client".
 
-1. Créez un composant `Counter` par exemple dans un nouveau dossier `components` :
+1. Créez un composant `Counter` dans `app/components/Counter.jsx` :
 
-   ```jsx:app/components/Counter.js
+   ```jsxjsx:app/layout.jsx
+   // app/components/Counter.jsx
    "use client";
 
-   import React from 'react';
+   import { useState } from 'react';
 
    export default function Counter() {
-     // Utilisation du hook useState pour gérer le compteur
-     const [count, setCount] = React.useState(0);
+     const [count, setCount] = useState(0);
 
      return (
        <div>
          <p>Valeur du compteur: {count}</p>
-         <button onClick={() => setCount(count + 1)}>Incrémenter</button>
+         <button onClick={() => setCount(count + 1)}>
+           Incrémenter
+         </button>
        </div>
      );
    }
    ```
 
-2. Intégrez ce composant dans la page d'accueil (`app/page.js`) :
+2. Intégrez ce composant dans la page d'accueil :
 
-   ```jsx:app/page.js
+   ```jsx:app/page.jsx
+   // app/page.jsx
    import Counter from './components/Counter';
 
    export default function HomePage() {
@@ -364,7 +375,8 @@ import './globals.css'
 
 1. Modifiez la page d'accueil pour y inclure une image :
 
-   ```jsx:app/page.js
+   ```jsx:app/page.jsx
+   // app/page.jsx
    import Image from 'next/image';
    import Counter from './components/Counter';
 
@@ -375,10 +387,11 @@ import './globals.css'
          <p>Cette page est rendue côté serveur par défaut grâce à Next.js.</p>
          {/* Utilisation de Next/Image pour une image optimisée */}
          <Image
-           src="/chemin/vers/image.jpg"
-           alt="Description de l'image"
+           src="/images/next-app.png"
+           alt="Illustration Next.js"
            width={600}
            height={400}
+           priority
          />
          <Counter />
        </main>
