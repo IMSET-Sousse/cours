@@ -1,160 +1,111 @@
-# TP2 Styling
+# TP2 : Styling
+
+## Introduction
+
+Le styling (mise en forme) est un aspect fondamental du développement web. Next.js offre plusieurs approches pour styler vos applications, toutes intégrées nativement sans configuration supplémentaire. Dans ce TP, nous nous concentrerons sur les méthodes de styling utilisant uniquement CSS, sans Sass ni Tailwind CSS.
 
 ## Objectifs
 
 - Comprendre les différentes approches de styling dans Next.js
-- Maîtriser les méthodes de styling CSS
-- Implémenter des styles globaux et des modules CSS
-- Utiliser Tailwind CSS avec Next.js
-
-## Introduction
-
-Next.js offre plusieurs approches pour styler vos applications. Ce TP se concentre sur les méthodes de styling CSS, notamment les CSS Modules et les styles globaux. Nous verrons également l'intégration de Tailwind CSS, un framework CSS utilitaire populaire.
+- Maîtriser l'utilisation des CSS Modules pour des styles isolés
+- Apprendre à utiliser le CSS global pour des styles d'application
+- Créer des composants réutilisables avec des styles modulaires
+- Implémenter des designs responsifs
 
 ## Prérequis
 
 - Avoir complété le TP1 Introduction à Next.js
 - Connaissances de base en CSS
-- Une application Next.js fonctionnelle
+- Un projet Next.js fonctionnel
 
-## Étapes
+## 1. Les Approches de Styling dans Next.js
 
-### 1. Les Différentes Approches de Styling
+Next.js propose plusieurs méthodes pour styler vos applications :
 
-Next.js prend en charge plusieurs méthodes de styling :
+1. **CSS Global**
+   - Styles appliqués à toute l'application
+   - Idéal pour les styles de base et les réinitialisations CSS
+   - Importé dans le fichier `layout.jsx`
 
-1. **CSS Modules** : Pour des styles scopés aux composants
-2. **Global CSS** : Pour des styles appliqués à toute l'application
-3. **Tailwind CSS** : Pour un styling utilitaire rapide
+2. **CSS Modules**
+   - Styles scopés à un composant spécifique
+   - Évite les conflits de noms de classes
+   - Nommage automatique des classes
 
-### 2. CSS Modules
+3. **CSS-in-JS** (non couvert dans ce TP)
+   - Styles directement dans les composants
+   - Utilisation de bibliothèques tierces
 
-Les CSS Modules permettent de créer des styles scopés à un composant spécifique, évitant les conflits de nommage.
+## 2. CSS Global
 
-1. Créez un nouveau composant avec son module CSS :
+Le CSS global permet de définir des styles qui s'appliquent à l'ensemble de l'application.
 
-```jsx:app/components/Card.jsx
-export default function Card({ title, children }) {
-  return (
-    <div className={styles.card}>
-      <h2 className={styles.title}>{title}</h2>
-      <div className={styles.content}>{children}</div>
-    </div>
-  );
-}
-```
+### 2.1 Configuration
 
-2. Créez le fichier de style correspondant :
+1. Créez ou modifiez le fichier `app/globals.css` :
 
-```css:app/components/Card.module.css
-.card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.title {
-  margin: 0 0 8px 0;
-  color: #333;
-}
-
-.content {
-  color: #666;
-}
-```
-
-3. Importez et utilisez le composant :
-
-```jsx:app/page.jsx
-import Card from './components/Card';
-
-export default function HomePage() {
-  return (
-    <main>
-      <Card title="Mon Premier Card">
-        <p>Contenu de la carte avec des styles scopés.</p>
-      </Card>
-    </main>
-  );
-}
-```
-
-### 3. Styles Globaux
-
-Les styles globaux s'appliquent à toute l'application. Ils sont parfaits pour définir des styles de base.
-
-1. Modifiez le fichier `app/globals.css` :
-
-```css:app/globals.css
-/* Reset CSS de base */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+```css
+/* app/globals.css */
 /* Variables CSS globales */
 :root {
   --primary-color: #0070f3;
   --secondary-color: #ff4081;
   --background-color: #ffffff;
   --text-color: #333333;
+  --spacing-unit: 8px;
+  --border-radius: 4px;
+}
+
+/* Reset CSS basique */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* Styles de base */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--background-color);
 }
 
-/* Styles de typographie */
+/* Typographie */
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
+  margin-bottom: calc(var(--spacing-unit) * 3);
 }
 
 h2 {
   font-size: 2rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: calc(var(--spacing-unit) * 2);
 }
 
 p {
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-unit);
 }
 
-/* Styles de mise en page */
+/* Layout */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 calc(var(--spacing-unit) * 2);
 }
 
-/* Styles de boutons */
-.button {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+/* Utilitaires */
+.text-center {
+  text-align: center;
 }
 
-.button:hover {
-  background-color: #0056b3;
-}
+.mt-1 { margin-top: var(--spacing-unit); }
+.mt-2 { margin-top: calc(var(--spacing-unit) * 2); }
+.mt-3 { margin-top: calc(var(--spacing-unit) * 3); }
 ```
 
-2. Assurez-vous que le fichier est importé dans `app/layout.jsx` :
+2. Importez le CSS global dans votre `app/layout.jsx` :
 
-```jsx:app/layout.jsx
+```jsx
 import './globals.css';
 
 export default function RootLayout({ children }) {
@@ -166,207 +117,279 @@ export default function RootLayout({ children }) {
 }
 ```
 
-### 4. Installation et Configuration de Tailwind CSS
+## 3. CSS Modules
 
-1. Installez Tailwind CSS et ses dépendances :
+Les CSS Modules permettent de créer des styles scopés à un composant spécifique, évitant ainsi les conflits de noms de classes.
 
-```bash
-npm install -D tailwindcss postcss autoprefixer
-```
+### 3.1 Création d'un Composant avec CSS Module
 
-2. Initialisez la configuration Tailwind :
+1. Créez un nouveau composant `Button` :
 
-```bash
-npx tailwindcss init -p
-```
+```jsx
+// app/components/Button/Button.jsx
+import styles from './Button.module.css';
 
-3. Configurez les chemins dans `tailwind.config.js` :
-
-```js:tailwind.config.js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+export default function Button({ children, variant = 'primary' }) {
+  return (
+    <button className={`${styles.button} ${styles[variant]}`}>
+      {children}
+    </button>
+  );
 }
 ```
 
-4. Ajoutez les directives Tailwind dans `globals.css` :
+2. Créez le fichier CSS Module correspondant :
 
-```css:app/globals.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+```css
+/* app/components/Button/Button.module.css */
+.button {
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.primary:hover {
+  background-color: #0051a8;
+}
+
+.secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.secondary:hover {
+  background-color: #d1336a;
+}
 ```
 
-## Exercices Pratiques
+### 3.2 Création d'une Card Réutilisable
 
-### Exercice 1 : Création d'un Composant Card avec CSS Modules
+1. Créez un composant `Card` :
 
-**Objectif :** Créer un composant Card réutilisable avec des styles scopés.
+```jsx
+// app/components/Card/Card.jsx
+import styles from './Card.module.css';
 
-1. Créez un nouveau composant `ProductCard` :
-
-```jsx:app/components/ProductCard.jsx
-import styles from './ProductCard.module.css';
-
-export default function ProductCard({ title, price, description, imageUrl }) {
+export default function Card({ title, children }) {
   return (
     <div className={styles.card}>
-      <img src={imageUrl} alt={title} className={styles.image} />
+      {title && <h2 className={styles.title}>{title}</h2>}
       <div className={styles.content}>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.price}>{price}€</p>
-        <p className={styles.description}>{description}</p>
+        {children}
       </div>
     </div>
   );
 }
 ```
 
-2. Créez les styles correspondants :
+2. Ajoutez les styles correspondants :
 
-```css:app/components/ProductCard.module.css
+```css
+/* app/components/Card/Card.module.css */
 .card {
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.content {
-  padding: 1rem;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: calc(var(--spacing-unit) * 3);
+  margin-bottom: calc(var(--spacing-unit) * 2);
 }
 
 .title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  margin-bottom: calc(var(--spacing-unit) * 2);
 }
 
-.price {
-  color: #0070f3;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.description {
-  color: #666;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
+.content {
+  color: var(--text-color);
 }
 ```
 
-### Exercice 2 : Page de Produits avec Tailwind CSS
+## 4. Design Responsif
 
-**Objectif :** Créer une page de produits utilisant Tailwind CSS.
+### 4.1 Grille Responsive avec CSS Grid
 
-1. Créez une nouvelle page produits :
+Ajoutez ces styles à votre `globals.css` :
 
-```jsx:app/products/page.jsx
-export default function ProductsPage() {
-  const products = [
-    {
-      id: 1,
-      name: "Produit 1",
-      price: 99.99,
-      description: "Description du produit 1"
-    },
-    {
-      id: 2,
-      name: "Produit 2",
-      price: 149.99,
-      description: "Description du produit 2"
-    }
-  ];
+```css
+/* Dans globals.css */
+.grid {
+  display: grid;
+  gap: calc(var(--spacing-unit) * 2);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
 
+/* Media Queries pour différentes tailles d'écran */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-unit);
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+```
+
+## 5. Exercices Pratiques
+
+### Exercice 1 : Page d'Accueil Stylée
+
+Créez une page d'accueil utilisant les composants et styles que nous avons créés :
+
+```jsx
+// app/page.jsx
+import Button from './components/Button/Button';
+import Card from './components/Card/Card';
+
+export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Nos Produits</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map(product => (
-          <div key={product.id} className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-            <p className="text-blue-600 font-bold">{product.price}€</p>
-            <p className="text-gray-600 mt-2">{product.description}</p>
-            <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
-              Ajouter au panier
-            </button>
-          </div>
-        ))}
+    <div className="container">
+      <h1 className="text-center">Bienvenue sur Notre Site</h1>
+      
+      <div className="grid mt-3">
+        <Card title="Fonctionnalité 1">
+          <p>Description de la première fonctionnalité</p>
+          <Button>En savoir plus</Button>
+        </Card>
+        
+        <Card title="Fonctionnalité 2">
+          <p>Description de la deuxième fonctionnalité</p>
+          <Button variant="secondary">Découvrir</Button>
+        </Card>
+        
+        <Card title="Fonctionnalité 3">
+          <p>Description de la troisième fonctionnalité</p>
+          <Button>Explorer</Button>
+        </Card>
       </div>
     </div>
   );
 }
 ```
 
-### Exercice 3 : Création d'un Thème avec Variables CSS
+### Exercice 2 : Navigation Responsive
 
-**Objectif :** Implémenter un système de thème utilisant les variables CSS.
+Créez un composant de navigation responsive :
 
-1. Ajoutez des variables de thème dans `globals.css` :
+```jsx
+// app/components/Navigation/Navigation.jsx
+import styles from './Navigation.module.css';
+import Link from 'next/link';
 
-```css:app/globals.css
-:root {
-  /* Couleurs principales */
-  --color-primary: #0070f3;
-  --color-secondary: #ff4081;
-  --color-success: #28a745;
-  --color-danger: #dc3545;
-  
-  /* Couleurs de fond */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  
-  /* Typographie */
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  
-  /* Espacement */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-}
-
-/* Classe utilitaire pour le thème sombre */
-[data-theme="dark"] {
-  --color-primary: #66b3ff;
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
+export default function Navigation() {
+  return (
+    <nav className={styles.nav}>
+      <div className="container">
+        <div className={styles.navContent}>
+          <Link href="/" className={styles.logo}>
+            MonSite
+          </Link>
+          <ul className={styles.navLinks}>
+            <li><Link href="/">Accueil</Link></li>
+            <li><Link href="/about">À propos</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
 ```
 
-## Ressources Supplémentaires
+```css
+/* app/components/Navigation/Navigation.module.css */
+.nav {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: calc(var(--spacing-unit) * 2) 0;
+}
 
-- [Documentation CSS Modules Next.js](https://nextjs.org/docs/basic-features/built-in-css-support#adding-component-level-css)
-- [Documentation Tailwind CSS](https://tailwindcss.com/docs)
-- [Guide des bonnes pratiques CSS](https://developer.mozilla.org/fr/docs/Web/CSS)
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  gap: calc(var(--spacing-unit) * 3);
+  list-style: none;
+}
+
+.navLinks a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .navContent {
+    flex-direction: column;
+    gap: var(--spacing-unit);
+  }
+
+  .navLinks {
+    gap: var(--spacing-unit);
+  }
+}
+```
+
+## Points Clés à Retenir
+
+1. **CSS Global vs CSS Modules**
+   - CSS Global pour les styles d'application et utilitaires
+   - CSS Modules pour les styles de composants isolés
+
+2. **Variables CSS**
+   - Définies une fois dans `:root`
+   - Réutilisables dans toute l'application
+   - Facilitent la maintenance et la cohérence
+
+3. **Design Responsif**
+   - Utilisation de CSS Grid pour les layouts
+   - Media queries pour l'adaptation mobile
+   - Unités relatives pour la flexibilité
+
+4. **Bonnes Pratiques**
+   - Organisation claire des fichiers CSS
+   - Nommage explicite des classes
+   - Réutilisation des composants
+   - Utilisation des variables CSS
+
+## Ressources
+
+- [Documentation CSS Next.js](https://nextjs.org/docs/app/building-your-application/styling)
+- [Guide CSS Modules](https://github.com/css-modules/css-modules)
+- [MDN CSS Grid Guide](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Grid_Layout)
 
 ## Conclusion
 
-Ce TP vous a permis d'explorer les différentes approches de styling dans Next.js. Vous avez appris à :
-- Utiliser les CSS Modules pour des styles scopés
-- Gérer les styles globaux
-- Intégrer Tailwind CSS
-- Créer des composants réutilisables avec leur propre style
+Ce TP vous a permis de découvrir les différentes approches de styling dans Next.js, en se concentrant sur l'utilisation du CSS pur. Vous avez appris à :
 
-La prochaine étape consistera à explorer des fonctionnalités plus avancées de Next.js comme le routing et la gestion des données.
+- Utiliser le CSS Global pour les styles d'application
+- Créer des composants isolés avec CSS Modules
+- Implémenter un design responsif
+- Appliquer les bonnes pratiques de styling
