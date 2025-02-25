@@ -1,4 +1,4 @@
-# TP 1 : Initiation à Django (Version 4.2)
+# TP 1 : Initiation à Django
 
 ## Introduction
 
