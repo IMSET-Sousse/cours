@@ -280,6 +280,17 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    python manage.py createsuperuser
    ```
 
+   ```text
+   Username (leave blank to use 'your-username'): admin
+   Email address: admin@example.com
+   Password: admin
+   Password (again): admin
+   This password is too common.
+   This password is entirely numeric.
+   Bypass password validation and create user anyway? [y/N]: y
+   Superuser created successfully.
+   ```
+
 2. Enregistrez le modèle Article dans l'admin (`blog/admin.py`) :
 
    ```python:blog/admin.py
