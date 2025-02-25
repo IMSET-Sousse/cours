@@ -68,13 +68,11 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    cd mon-projet-django
    
    # Créez l'environnement virtuel
-   python -m venv env
+   python -m venv 
    
    # Activez l'environnement virtuel
    # Sur Windows :
-   env\Scripts\activate
-   # Sur Unix/MacOS :
-   source env/bin/activate
+   .venv\Scripts\activate
    ```
 
 4. Installez Django :
