@@ -71,7 +71,6 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    python -m venv .venv
    
    # Activez l'environnement virtuel
-   # Sur Windows :
    .venv\Scripts\activate
    ```
 
@@ -273,9 +272,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    {% endblock %}
    ```
 
-## Exercices Pratiques
-
-### Exercice 1 : Créer un Superutilisateur
+### 8. Configuration de l'Administration
 
 1. Créez un superutilisateur :
 
@@ -294,7 +291,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 
 3. Accédez à l'interface d'administration sur [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
-### Exercice 2 : Ajouter une Page de Détail
+### 9. Création d'une Page de Détail
 
 1. Ajoutez une vue de détail dans `views.py` :
 
@@ -332,29 +329,44 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    {% endblock %}
    ```
 
-### Exercice 3 : Ajouter des Catégories
+### 10. Exercice : Gestion des Catégories
 
-1. Ajoutez un modèle Categorie :
+Dans cet exercice, vous allez améliorer le blog en ajoutant un système de catégorisation des articles.
 
-   ```python:blog/models.py
-   class Categorie(models.Model):
-       nom = models.CharField(max_length=100)
-       description = models.TextField(blank=True)
+**Objectifs** :
 
-       def __str__(self):
-           return self.nom
+- Créer un modèle pour les catégories
+- Lier les articles aux catégories
+- Afficher les catégories dans l'interface d'administration
+- Mettre à jour l'affichage des articles pour inclure leurs catégories
 
-   class Article(models.Model):
-       # ... code existant ...
-       categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
-   ```
+**Instructions** :
 
-2. Créez et appliquez les migrations :
+1. Modifiez le fichier `blog/models.py` pour :
+   - Créer un modèle `Categorie` avec les champs :
+     - `nom` (CharField)
+     - `description` (TextField, optionnel)
+   - Ajouter un champ `categorie` au modèle `Article` (ForeignKey)
 
-   ```powershell
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
+2. Créez et appliquez les migrations nécessaires
+
+3. Enregistrez le modèle `Categorie` dans l'interface d'administration
+
+4. Mettez à jour les templates pour afficher la catégorie de chaque article :
+   - Dans la liste des articles
+   - Dans la page de détail d'un article
+
+**Conseils** :
+
+- Utilisez `models.ForeignKey` pour créer la relation entre Article et Categorie
+- N'oubliez pas d'ajouter `on_delete=models.CASCADE` pour la clé étrangère
+- Pensez à mettre à jour l'affichage dans les templates avec la nouvelle information de catégorie
+
+**Validation** :
+
+- Vous devriez pouvoir créer des catégories dans l'interface d'administration
+- Chaque article devrait être associé à une catégorie
+- La catégorie devrait être visible dans la liste des articles et la page de détail
 
 ## Ressources Supplémentaires
 
