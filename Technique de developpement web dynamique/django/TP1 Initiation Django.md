@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Django est un framework web Python de haut niveau qui encourage un développement rapide et une conception propre et pragmatique([1](https://docs.djangoproject.com/en/4.2/)). Il suit le modèle architectural MVT (Model-View-Template), une variation du MVC, et inclut de nombreuses fonctionnalités "batteries included" comme un ORM puissant, un système d'administration automatique et un système de templates flexible.
+Django est un framework web Python de haut niveau qui encourage un développement rapide et une conception propre et pragmatique([1](https://docs.djangoproject.com/en/5.1/)). Il suit le modèle architectural MVT (Model-View-Template), une variation du MVC, et inclut de nombreuses fonctionnalités "batteries included" comme un ORM puissant, un système d'administration automatique et un système de templates flexible.
 
 Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans la création d'une application web simple et de vous préparer à explorer ses fonctionnalités avancées.
 
@@ -41,11 +41,13 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 2. Vérifiez l'installation en ouvrant un terminal :
 
    Pour vérifier Python :
+
    ```powershell
    python --version
    ```
 
    Pour vérifier pip :
+
    ```powershell
    pip --version
    ```
@@ -59,6 +61,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    - SQLite Viewer
 
 3. Créez un environnement virtuel :
+
    ```powershell
    # Créez un dossier pour votre projet
    mkdir mon-projet-django
@@ -75,18 +78,21 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 4. Installez Django :
+
    ```powershell
    pip install django
    ```
 
 ### 3. Création d'un projet Django
 
-1. Créez un nouveau projet([2](https://docs.djangoproject.com/en/4.2/intro/tutorial01/)) :
+1. Créez un nouveau projet([2](https://docs.djangoproject.com/en/5.1/intro/tutorial01/)):
+
    ```powershell
    django-admin startproject monsite .
    ```
 
 2. Structure du projet créé :
+
    ```text
    monsite/
    ├── manage.py          # Utilitaire en ligne de commande
@@ -99,19 +105,23 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 3. Lancez le serveur de développement :
+
    ```powershell
    python manage.py runserver
    ```
+
    Visitez [http://127.0.0.1:8000/](http://127.0.0.1:8000/) pour voir la page de bienvenue.
 
 ### 4. Création d'une première application
 
 1. Créez une nouvelle application :
+
    ```powershell
    python manage.py startapp blog
    ```
 
 2. Structure de l'application :
+
    ```text
    blog/
    ├── migrations/        # Dossier des migrations de base de données
@@ -124,6 +134,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 3. Ajoutez l'application dans `settings.py` :
+
    ```python:monsite/settings.py
    INSTALLED_APPS = [
        'django.contrib.admin',
@@ -139,6 +150,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 ### 5. Création des premiers modèles
 
 1. Définissez un modèle dans `blog/models.py` :
+
    ```python:blog/models.py
    from django.db import models
    from django.utils import timezone
@@ -153,6 +165,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 2. Créez et appliquez les migrations :
+
    ```powershell
    python manage.py makemigrations
    python manage.py migrate
@@ -161,6 +174,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 ### 6. Création des vues et URLs
 
 1. Créez une vue dans `blog/views.py` :
+
    ```python:blog/views.py
    from django.shortcuts import render
    from .models import Article
@@ -171,6 +185,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 2. Créez un fichier `blog/urls.py` :
+
    ```python:blog/urls.py
    from django.urls import path
    from . import views
@@ -182,6 +197,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 3. Modifiez `monsite/urls.py` :
+
    ```python:monsite/urls.py
    from django.contrib import admin
    from django.urls import path, include
@@ -195,6 +211,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 ### 7. Création des templates
 
 1. Créez la structure des templates :
+
    ```text
    blog/
    └── templates/
@@ -204,6 +221,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 2. Créez le template de base `blog/templates/blog/base.html` :
+
    ```html:blog/templates/blog/base.html
    <!DOCTYPE html>
    <html lang="fr">
@@ -237,6 +255,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 3. Créez le template de liste `blog/templates/blog/liste_articles.html` :
+
    ```html:blog/templates/blog/liste_articles.html
    {% extends 'blog/base.html' %}
 
@@ -261,11 +280,13 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 ### Exercice 1 : Créer un Superutilisateur
 
 1. Créez un superutilisateur :
+
    ```powershell
    python manage.py createsuperuser
    ```
 
 2. Enregistrez le modèle Article dans l'admin (`blog/admin.py`) :
+
    ```python:blog/admin.py
    from django.contrib import admin
    from .models import Article
@@ -278,6 +299,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 ### Exercice 2 : Ajouter une Page de Détail
 
 1. Ajoutez une vue de détail dans `views.py` :
+
    ```python:blog/views.py
    from django.shortcuts import render, get_object_or_404
 
@@ -287,6 +309,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 2. Ajoutez l'URL dans `blog/urls.py` :
+
    ```python:blog/urls.py
    urlpatterns = [
        path('', views.liste_articles, name='liste_articles'),
@@ -295,6 +318,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 3. Créez le template `blog/templates/blog/detail_article.html` :
+
    ```html:blog/templates/blog/detail_article.html
    {% extends 'blog/base.html' %}
 
@@ -313,6 +337,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 ### Exercice 3 : Ajouter des Catégories
 
 1. Ajoutez un modèle Categorie :
+
    ```python:blog/models.py
    class Categorie(models.Model):
        nom = models.CharField(max_length=100)
@@ -327,6 +352,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ```
 
 2. Créez et appliquez les migrations :
+
    ```powershell
    python manage.py makemigrations
    python manage.py migrate
@@ -338,7 +364,3 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 - [Django Girls Tutorial](https://tutorial.djangogirls.org/)
 - [Django REST framework](https://www.django-rest-framework.org/) (pour les APIs)
 - [Awesome Django](https://github.com/wsvincent/awesome-django)
-
-## Conclusion
-
-Ce TP vous a permis de découvrir les bases de Django et de créer une application web simple. Les concepts abordés serviront de base pour des fonctionnalités plus avancées dans les prochains TPs.
