@@ -85,15 +85,15 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 1. Créez un nouveau projet([2](https://docs.djangoproject.com/en/5.1/intro/tutorial01/)):
 
    ```powershell
-   django-admin startproject monsite .
+   django-admin startproject app .
    ```
 
 2. Structure du projet créé :
 
    ```text
-   monsite/
+   .
    ├── manage.py          # Utilitaire en ligne de commande
-   └── monsite/           # Package Python du projet
+   └── app/           # Package Python du projet
        ├── __init__.py    # Indique que c'est un package Python
        ├── settings.py    # Configuration du projet
        ├── urls.py        # Configuration des URLs
@@ -132,7 +132,7 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 
 3. Ajoutez l'application dans `settings.py` :
 
-   ```python:monsite/settings.py
+   ```python:app/settings.py
    INSTALLED_APPS = [
        'django.contrib.admin',
        'django.contrib.auth',
@@ -193,9 +193,9 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    ]
    ```
 
-3. Modifiez `monsite/urls.py` :
+3. Modifiez `app/urls.py` :
 
-   ```python:monsite/urls.py
+   ```python:app/urls.py
    from django.contrib import admin
    from django.urls import path, include
 
