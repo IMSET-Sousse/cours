@@ -274,11 +274,15 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
 
 ### 8. Configuration de l'Administration
 
-1. Créez un superutilisateur :
+1. Créez un superutilisateur (un compte administrateur avec tous les droits) :
+
+   La commande suivante permet de créer un compte administrateur qui aura accès à l'interface d'administration Django :
 
    ```powershell
    python manage.py createsuperuser
    ```
+
+   Vous devrez ensuite remplir les informations suivantes :
 
    ```text
    Username (leave blank to use 'your-username'): admin
@@ -290,6 +294,8 @@ Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans l
    Bypass password validation and create user anyway? [y/N]: y
    Superuser created successfully.
    ```
+
+   Note : Pour des raisons de sécurité, lorsque vous tapez votre mot de passe, celui-ci ne s'affichera pas dans le terminal. C'est un comportement normal qui protège votre mot de passe des regards indiscrets.
 
 2. Enregistrez le modèle Article dans l'admin (`blog/admin.py`) :
 
@@ -441,6 +447,3 @@ Dans cet exercice, vous allez améliorer le blog en ajoutant un système de cat�
 ## Ressources Supplémentaires
 
 - [Documentation officielle de Django](https://docs.djangoproject.com/)
-- [Django Girls Tutorial](https://tutorial.djangogirls.org/)
-- [Django REST framework](https://www.django-rest-framework.org/) (pour les APIs)
-- [Awesome Django](https://github.com/wsvincent/awesome-django)
