@@ -1,8 +1,12 @@
 # TP 1 : Initiation à Django
 
+![Django Logo](./assets/django-logo.png)
+
 ## Introduction
 
 Django est un framework web Python de haut niveau qui encourage un développement rapide et une conception propre et pragmatique([1](https://docs.djangoproject.com/en/5.1/)). Il suit le modèle architectural MVT (Model-View-Template), une variation du MVC, et inclut de nombreuses fonctionnalités "batteries included" comme un ORM puissant, un système d'administration automatique et un système de templates flexible.
+
+![Django MVT Architecture](./assets/django-mvt.png)
 
 Ce TP a pour objectif de vous initier aux bases de Django, de vous guider dans la création d'une application web simple et de vous préparer à explorer ses fonctionnalités avancées.
 
