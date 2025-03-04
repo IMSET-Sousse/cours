@@ -379,6 +379,65 @@ Dans cet exercice, vous allez améliorer le blog en ajoutant un système de cat�
 - Chaque article devrait être associé à une catégorie
 - La catégorie devrait être visible dans la liste des articles et la page de détail
 
+### 11. Exercice : Gestion des Commentaires
+
+**Objectifs :**
+
+- Créer un modèle pour les commentaires
+- Lier les commentaires aux articles
+- Afficher les commentaires sous chaque article
+- Permettre aux utilisateurs d'ajouter des commentaires via un formulaire
+
+**Instructions :**
+
+1. Modifiez le fichier `blog/models.py` pour :
+   - Créer un modèle `Commentaire` avec les champs :
+     - `article` (ForeignKey vers Article)
+     - `auteur` (CharField)
+     - `contenu` (TextField)
+     - `date_creation` (DateTimeField avec valeur par défaut)
+
+2. Créez et appliquez les migrations nécessaires.
+
+3. Enregistrez le modèle `Commentaire` dans l'interface d'administration.
+
+4. Créez un formulaire Django pour permettre aux utilisateurs d'ajouter des commentaires.
+
+5. Mettez à jour les vues et les templates pour afficher les commentaires sous chaque article et intégrer le formulaire d'ajout de commentaire.
+
+### 12. Exercice : Pagination des Articles
+
+**Objectifs :**
+
+- Implémenter la pagination pour la liste des articles
+- Afficher un nombre limité d'articles par page
+- Ajouter des contrôles de navigation entre les pages
+
+**Instructions :**
+
+1. Modifiez la vue `liste_articles` dans `blog/views.py` pour utiliser la pagination Django (`Paginator`).
+
+2. Affichez 5 articles par page.
+
+3. Mettez à jour le template `liste_articles.html` pour inclure des contrôles de pagination (précédent, suivant, numéros de page).
+
+### 13. Exercice : Recherche d'Articles
+
+**Objectifs :**
+
+- Ajouter une fonctionnalité de recherche d'articles par titre ou contenu
+- Afficher les résultats de recherche dans une page dédiée
+
+**Instructions :**
+
+1. Créez une nouvelle vue `recherche_articles` dans `blog/views.py`.
+
+2. Ajoutez un formulaire de recherche dans le template `base.html`.
+
+3. Créez une URL dédiée à la recherche dans `blog/urls.py`.
+
+4. Affichez les résultats de recherche dans un nouveau template `recherche_articles.html`.
+
 ## Ressources Supplémentaires
 
 - [Documentation officielle de Django](https://docs.djangoproject.com/)
