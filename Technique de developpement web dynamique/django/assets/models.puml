@@ -1,0 +1,25 @@
+@startuml TweetClone
+
+class Tweet {
+  - content: CharField(max_length=280)
+  - created_at: DateTimeField
+  - updated_at: DateTimeField
+  + __str__(): String
+  + Meta.ordering: [-created_at]
+}
+
+note right of Tweet
+  Represents a tweet post with:
+  - Content limited to 280 chars
+  - Creation timestamp
+  - Last update timestamp
+  - String representation
+  - Ordered by newest first
+end note
+
+legend
+  Tweet model for TweetClone application
+  A simple Twitter clone built with Django
+end legend
+
+@enduml

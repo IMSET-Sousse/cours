@@ -448,6 +448,162 @@ Dans cet exercice, vous allez améliorer le blog en ajoutant un système de cat�
 
 4. Affichez les résultats de recherche dans un nouveau template `recherche_articles.html`.
 
+### 14. Projet Final : Clone de Twitter (TweetClone)
+
+**Objectifs :**
+
+- Créer une application similaire à Twitter avec les fonctionnalités de base
+- Implémenter un système de tweets avec CRUD (Create, Read, Update, Delete)
+- Créer un fil d'actualité (feed) pour afficher les tweets
+- Apprendre à gérer les modèles et les formulaires Django
+
+**Étape 1 : Configuration du Projet**
+
+1. Création du projet :
+   - Créez un nouveau projet Django
+   - Créez une application `tweets`
+   - Ajoutez l'application dans `INSTALLED_APPS`
+
+**Étape 2 : Modélisation des Données**
+
+![Modèle Tweet](./assets/TweetClone.png)
+
+Le diagramme ci-dessus montre la structure du modèle `Tweet` que nous allons implémenter. Il contient :
+
+- Un champ `content` pour le contenu du tweet (limité à 280 caractères)
+- Un champ `created_at` pour la date de création
+- Un champ `updated_at` pour la date de dernière modification
+- Une méthode `__str__` pour l'affichage
+- Une configuration Meta pour l'ordre d'affichage (du plus récent au plus ancien)
+
+1. Création du modèle Tweet :
+   - Définissez les champs (contenu, dates)
+   - Ajoutez les métadonnées (ordering, etc.)
+   - Implémentez la méthode `__str__`
+
+2. Migrations :
+   - Créez les migrations pour votre modèle
+   - Appliquez les migrations
+
+**Étape 3 : Interface d'Administration**
+
+1. Configuration de l'admin :
+   - Enregistrez le modèle Tweet dans l'admin
+   - Personnalisez l'affichage des tweets
+   - Testez la création et modification via l'admin
+
+2. Amélioration de l'interface admin :
+   - Ajoutez des champs de recherche
+   - Configurez les filtres
+   - Personnalisez l'affichage des listes
+
+**Étape 4 : URLs et Vues de Base**
+
+1. Configuration des URLs :
+   - Créez le fichier `urls.py` dans l'application
+   - Configurez les URLs principales
+   - Liez les URLs de l'application
+
+2. Création des vues de base :
+   - Implémentez la vue du feed
+   - Créez la vue de détail
+   - Testez l'affichage des données
+
+**Étape 5 : Templates et Style**
+
+1. Structure des templates :
+   - Créez un template de base
+   - Implémentez l'héritage de templates
+   - Ajoutez les blocs nécessaires
+
+2. Styles de base :
+   - Ajoutez le CSS de base
+   - Rendez l'interface responsive
+   - Stylisez les éléments principaux
+
+**Étape 6 : Formulaires et Création**
+
+1. Création des formulaires :
+   - Définissez le formulaire pour les tweets
+   - Configurez les widgets et la validation
+   - Ajoutez les styles des formulaires
+
+2. Implémentation de la création :
+   - Ajoutez la vue de création
+   - Intégrez le formulaire dans le template
+   - Testez la création de tweets
+
+**Étape 7 : Modification et Suppression**
+
+1. Modification :
+   - Créez la vue de modification
+   - Ajoutez le formulaire d'édition
+   - Gérez la redirection
+
+2. Suppression :
+   - Implémentez la vue de suppression
+   - Ajoutez la confirmation
+   - Testez la suppression
+
+**Étape 8 : Améliorations**
+
+1. Pagination :
+   - Ajoutez la pagination au feed
+   - Configurez le nombre d'éléments par page
+   - Stylisez la navigation
+
+2. Messages de feedback :
+   - Ajoutez des messages de confirmation
+   - Gérez les erreurs
+   - Améliorez l'expérience utilisateur
+
+**Points de Validation pour Chaque Étape :**
+
+1. **Étape 1-2 :**
+   - Le projet est créé et configuré
+   - Les modèles sont créés et migrés
+   - La base de données est prête
+
+2. **Étape 3 :**
+   - L'interface d'administration est fonctionnelle
+   - Les tweets peuvent être créés via l'admin
+   - L'affichage est personnalisé
+
+3. **Étape 4 :**
+   - Les URLs sont correctement configurées
+   - Les vues de base fonctionnent
+   - Les données s'affichent correctement
+
+4. **Étape 5 :**
+   - Les templates sont bien structurés
+   - L'interface est cohérente
+   - Le design est responsive
+
+5. **Étape 6 :**
+   - Les formulaires fonctionnent
+   - La création de tweets est possible
+   - La validation fonctionne
+
+6. **Étape 7-8 :**
+   - CRUD complet fonctionnel
+   - Pagination implémentée
+   - Interface utilisateur intuitive
+
+**Bonus :**
+
+- Ajoutez un système de recherche de tweets
+- Implémentez des hashtags cliquables
+- Créez une page de tendances
+- Ajoutez des filtres de recherche avancés
+
+**Ressources :**
+
+- [Django Models](https://docs.djangoproject.com/en/stable/topics/db/models/)
+- [Django Admin](https://docs.djangoproject.com/en/stable/ref/contrib/admin/)
+- [Django Forms](https://docs.djangoproject.com/en/stable/topics/forms/)
+- [Django Templates](https://docs.djangoproject.com/en/stable/topics/templates/)
+- [Django Class-Based Views](https://docs.djangoproject.com/en/stable/topics/class-based-views/)
+
 ## Ressources Supplémentaires
 
 - [Documentation officielle de Django](https://docs.djangoproject.com/)
