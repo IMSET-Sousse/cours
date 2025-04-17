@@ -74,6 +74,53 @@ print(float('-inf')) # Infini négatif
 print(float('nan'))  # Not a Number
 ```
 
+### Exercices Pratiques - Types Numériques
+
+1. **Calculatrice Simple**
+
+```python
+# Créez une calculatrice qui effectue les opérations de base
+# et gère la division par zéro
+operation = '+'
+a, b = 10, 5
+
+if operation == '+':
+    resultat = a + b
+elif operation == '-':
+    resultat = a - b
+elif operation == '*':
+    resultat = a * b
+elif operation == '/':
+    if b == 0:
+        resultat = "Division par zéro impossible"
+    else:
+        resultat = a / b
+
+print(resultat)  # Affiche le résultat
+```
+
+2. **Conversion de Température**
+
+```python
+# Convertissez entre Celsius et Fahrenheit
+celsius = 0
+fahrenheit = (celsius * 9/5) + 32
+print(fahrenheit)  # 32.0
+
+fahrenheit = 98.6
+celsius = (fahrenheit - 32) * 5/9
+print(celsius)  # 37.0
+```
+
+3. **Manipulation de Bits**
+
+```python
+# Vérifiez si un nombre est une puissance de 2
+n = 16
+est_puissance_de_2 = (n > 0) and (n & (n - 1)) == 0
+print(est_puissance_de_2)  # True
+```
+
 ## 2. Chaînes de caractères (str)
 
 Les chaînes de caractères en Python sont des séquences immuables d'Unicode.
@@ -122,6 +169,61 @@ print(s.isdigit())      # Vérifie si tous les caractères sont des chiffres
 print(s.isalnum())      # Vérifie si tous les caractères sont alphanumériques
 print(s.startswith("Py"))  # Vérifie le début
 print(s.endswith("!"))     # Vérifie la fin
+```
+
+### Exercices Pratiques - Chaînes de caractères
+
+1. **Analyseur de Texte**
+
+```python
+texte = "Python 3.9 est SUPER!"
+longueur = len(texte)
+mots = len(texte.split())
+majuscules = sum(1 for c in texte if c.isupper())
+minuscules = sum(1 for c in texte if c.islower())
+chiffres = sum(1 for c in texte if c.isdigit())
+
+print({'longueur': longueur, 'mots': mots, 'majuscules': majuscules, 'minuscules': minuscules, 'chiffres': chiffres})
+```
+
+2. **Validateur d'Email**
+
+```python
+email = "user@example.com"
+if '@' in email:
+    nom, domaine = email.split('@')
+    email_valide = (
+        len(nom) > 0 and
+        len(domaine) > 3 and
+        '.' in domaine and
+        not any(c in ' ,;:' for c in email)
+    )
+else:
+    email_valide = False
+
+print(email_valide)  # True
+```
+
+3. **Formateur de Texte**
+
+```python
+texte = "Python est un langage de programmation puissant et facile à apprendre"
+largeur = 20
+mots = texte.split()
+lignes = []
+ligne_courante = []
+
+for mot in mots:
+    if sum(len(m) for m in ligne_courante) + len(ligne_courante) + len(mot) <= largeur:
+        ligne_courante.append(mot)
+    else:
+        lignes.append(' '.join(ligne_courante))
+        ligne_courante = [mot]
+
+if ligne_courante:
+    lignes.append(' '.join(ligne_courante))
+
+print('\n'.join(lignes))
 ```
 
 ## 3. Listes et tuples
@@ -190,6 +292,51 @@ print(points[0][0])  # 1
 print(points[0][1])  # 2
 ```
 
+### Exercices Pratiques - Listes et Tuples
+
+1. **Gestionnaire de Notes**
+
+```python
+notes = []
+
+while True:
+    note = float(input("Entrez une note (ou -1 pour terminer): "))
+    if note == -1:
+        break
+    if 0 <= note <= 20:
+        notes.append(note)
+        print("Note ajoutée")
+    else:
+        print("Note invalide")
+
+if notes:
+    moyenne = sum(notes) / len(notes)
+    stats = {
+        'moyenne': moyenne,
+        'min': min(notes),
+        'max': max(notes),
+        'nombre_notes': len(notes)
+    }
+else:
+    stats = None
+
+print(stats)
+```
+
+2. **Manipulation de Matrices**
+
+```python
+lignes, colonnes = 2, 2
+valeur_defaut = 0
+matrice1 = [[valeur_defaut for _ in range(colonnes)] for _ in range(lignes)]
+matrice2 = [[valeur_defaut + 1 for _ in range(colonnes)] for _ in range(lignes)]
+
+matrice3 = [[matrice1[i][j] + matrice2[i][j] for j in range(colonnes)] for i in range(lignes)]
+
+for ligne in matrice3:
+    print(' '.join(str(x) for x in ligne))
+```
+
 ## 4. Dictionnaires (dict)
 
 Les dictionnaires sont des collections non ordonnées de paires clé-valeur.
@@ -215,6 +362,38 @@ print(mon_dict.setdefault("langue", "Français"))  # Ajout si absent
 # Dictionary comprehension
 carrés = {x: x**2 for x in range(5)}
 filtre = {k: v for k, v in mon_dict.items() if len(k) > 3}
+```
+
+### Exercices Pratiques - Dictionnaires
+
+1. **Gestionnaire de Contacts**
+
+```python
+contacts = {}
+
+contacts["Alice"] = {'telephone': "0123456789", 'email': "alice@email.com"}
+contacts["Bob"] = {'telephone': "9876543210", 'email': "bob@email.com"}
+
+contact_recherche = contacts.get("Alice", "Contact non trouvé")
+print(contact_recherche)
+
+contacts.pop("Bob", None)
+print(contacts)
+```
+
+2. **Analyseur de Fréquence**
+
+```python
+texte = "le chat le chien le chat chat"
+texte = texte.lower()
+mots = texte.split()
+
+frequence = {}
+for mot in mots:
+    frequence[mot] = frequence.get(mot, 0) + 1
+
+frequence_triee = dict(sorted(frequence.items(), key=lambda x: x[1], reverse=True))
+print(frequence_triee)
 ```
 
 ## 5. Ensembles (set)
@@ -243,243 +422,105 @@ mon_set.clear()         # Vidage de l'ensemble
 nombres_pairs = {x for x in range(10) if x % 2 == 0}
 ```
 
-## 6. Opérateurs Logiques et Booléens
+### Exercices Pratiques - Ensembles
 
-### Introduction aux Opérateurs Logiques
-
-Les opérateurs logiques en Python permettent de combiner des expressions booléennes pour former des conditions plus complexes. Ils sont essentiels pour le contrôle de flux et la prise de décision dans les programmes.
-
-### Opérateurs Booléens de Base
-
-#### AND (et)
-
-L'opérateur `and` retourne `True` uniquement si les deux opérandes sont `True`. Si le premier opérande est `False`, Python n'évalue même pas le second (court-circuit).
+1. **Gestionnaire de Bibliothèque**
 
 ```python
-# Exemples d'opérateur AND
-print(True and True)    # True
-print(True and False)   # False
-print(False and True)   # False
-print(False and False)  # False
+livres_disponibles = set()
+livres_empruntes = set()
 
-# Exemple pratique
-age = 25
-permis = True
-peut_conduire = age >= 18 and permis  # True
+livres_disponibles.add("Python pour les débutants")
+livres_disponibles.add("Algorithmes avancés")
+
+if "Python pour les débutants" in livres_disponibles:
+    livres_disponibles.remove("Python pour les débutants")
+    livres_empruntes.add("Python pour les débutants")
+
+status_bibliotheque = {
+    'disponibles': livres_disponibles,
+    'empruntes': livres_empruntes
+}
+
+print(status_bibliotheque)
 ```
 
-#### OR (ou)
-
-L'opérateur `or` retourne `True` si au moins un des opérandes est `True`. Si le premier opérande est `True`, Python n'évalue pas le second (court-circuit).
+2. **Analyseur de Texte avec Ensembles**
 
 ```python
-# Exemples d'opérateur OR
-print(True or True)     # True
-print(True or False)    # True
-print(False or True)    # True
-print(False or False)   # False
+t1 = "Python est un langage génial"
+t2 = "Python est facile à apprendre"
 
-# Exemple pratique
-pluie = False
-parapluie = True
-peut_sortir = not pluie or parapluie  # True
+mots1 = set(t1.lower().split())
+mots2 = set(t2.lower().split())
+
+resultat = {
+    'mots_communs': mots1 & mots2,
+    'mots_uniques_texte1': mots1 - mots2,
+    'mots_uniques_texte2': mots2 - mots1,
+    'vocabulaire_total': mots1 | mots2
+}
+
+print(resultat)
 ```
 
-#### NOT (non)
+## Projet Final
 
-L'opérateur `not` inverse la valeur booléenne de son opérande.
+### Mini-Système de Gestion d'Étudiants
 
-```python
-# Exemples d'opérateur NOT
-print(not True)   # False
-print(not False)  # True
+# Créez un système qui combine tous les types de données vus dans ce TP pour gérer des informations sur les étudiants
 
-# Exemple pratique
-est_ferme = False
-est_ouvert = not est_ferme  # True
-```
+etudiants = {}
+cours = set()
+notes = {}
 
-### Priorité des Opérateurs Logiques
+# Ajout d'étudiants
 
-La priorité des opérateurs logiques est la suivante (du plus prioritaire au moins prioritaire) :
+etudiants[1] = {'nom': "Alice Dupont", 'age': 20, 'cours': set()}
+notes[1] = {}
+etudiants[2] = {'nom': "Bob Martin", 'age': 22, 'cours': set()}
+notes[2] = {}
 
-1. `not`
-2. `and`
-3. `or`
+# Inscription aux cours
 
-```python
-# Exemple de priorité
-resultat = not True and False or True  # Équivaut à ((not True) and False) or True
-print(resultat)  # True
-```
+etudiants[1]['cours'].add("Python")
+cours.add("Python")
+notes[1]["Python"] = []
+etudiants[1]['cours'].add("Java")
+cours.add("Java")
+notes[1]["Java"] = []
+etudiants[2]['cours'].add("Python")
+notes[2]["Python"] = []
 
-### Opérateurs de Comparaison
+# Ajout de notes
 
-Les opérateurs de comparaison retournent des valeurs booléennes (`True` ou `False`).
+notes[1]["Python"].extend([15, 18])
+notes[1]["Java"].append(12)
+notes[2]["Python"].append(14)
 
-```python
-# Opérateurs de comparaison
-x = 5
-y = 10
+# Calcul des moyennes
 
-# Égalité et différence
-print(x == y)  # False (égalité)
-print(x != y)  # True (différence)
+moyenne1 = sum(notes[1]["Python"]) / len(notes[1]["Python"]) if notes[1]["Python"] else 0
+moyenne2 = sum(notes[2]["Python"]) / len(notes[2]["Python"]) if notes[2]["Python"] else 0
 
-# Comparaisons numériques
-print(x < y)   # True (inférieur)
-print(x > y)   # False (supérieur)
-print(x <= y)  # True (inférieur ou égal)
-print(x >= y)  # False (supérieur ou égal)
+# Affichage des rapports
 
-# Comparaisons de chaînes (ordre lexicographique)
-s1 = "abc"
-s2 = "def"
-print(s1 < s2)  # True
-```
+rapport1 = {
+'informations': {'nom': etudiants[1]['nom'], 'age': etudiants[1]['age']},
+'cours': list(etudiants[1]['cours']),
+'notes': notes[1],
+'moyenne_generale': moyenne1
+}
 
-### Opérateurs d'Identité
+rapport2 = {
+'informations': {'nom': etudiants[2]['nom'], 'age': etudiants[2]['age']},
+'cours': list(etudiants[2]['cours']),
+'notes': notes[2],
+'moyenne_generale': moyenne2
+}
 
-Les opérateurs `is` et `is not` vérifient si deux objets sont le même objet en mémoire.
-
-```python
-# Opérateurs d'identité
-a = [1, 2, 3]
-b = [1, 2, 3]
-c = a
-
-print(a is b)     # False (objets différents)
-print(a is c)     # True (même objet)
-print(a is not b) # True
-```
-
-### Opérateurs d'Appartenance
-
-Les opérateurs `in` et `not in` vérifient si un élément est présent dans une séquence.
-
-```python
-# Opérateurs d'appartenance
-liste = [1, 2, 3, 4, 5]
-chaine = "Bonjour"
-
-print(3 in liste)        # True
-print(6 not in liste)    # True
-print("jour" in chaine)  # True
-print("soir" not in chaine)  # True
-```
-
-### Combinaison d'Opérateurs
-
-Les opérateurs logiques peuvent être combinés pour former des conditions complexes.
-
-```python
-# Exemples de combinaisons
-age = 25
-permis = True
-experience = 2
-
-# Conditions complexes
-peut_conduire = age >= 18 and permis
-peut_location = age >= 21 and permis and experience >= 1
-peut_voiture_sport = age >= 25 and permis and experience >= 3
-
-# Utilisation de parenthèses pour clarifier
-condition = (age >= 18 and permis) or (age >= 16 and not permis)
-```
-
-### Exercices Pratiques
-
-1. Vérification d'âge et de permis
-
-```python
-age = 20
-permis = True
-experience = 1
-
-# Vérifie si la personne peut conduire une voiture de location
-peut_location = age >= 21 and permis and experience >= 1
-print(peut_location)  # False
-```
-
-2. Validation de mot de passe
-
-```python
-mot_de_passe = "Python123"
-longueur_ok = len(mot_de_passe) >= 8
-contient_maj = any(c.isupper() for c in mot_de_passe)
-contient_chiffre = any(c.isdigit() for c in mot_de_passe)
-
-mot_de_passe_valide = longueur_ok and contient_maj and contient_chiffre
-print(mot_de_passe_valide)  # True
-```
-
-3. Vérification de température
-
-```python
-temperature = 25
-humidite = 60
-vent = 15
-
-# Conditions météorologiques
-trop_chaud = temperature > 30
-trop_humide = humidite > 70
-trop_vent = vent > 20
-
-# Vérifie si les conditions sont favorables
-conditions_favorables = not (trop_chaud or trop_humide or trop_vent)
-print(conditions_favorables)  # True
-```
-
-### Bonnes Pratiques
-
-1. Utilisez des parenthèses pour clarifier l'ordre des opérations
-2. Évitez les conditions trop complexes - décomposez-les en plusieurs étapes
-3. Utilisez des variables intermédiaires pour améliorer la lisibilité
-4. Privilégiez les conditions positives plutôt que négatives
-5. Utilisez des noms de variables descriptifs pour les conditions
-
-## 7. Conversion entre types
-
-```python
-# Conversion explicite
-nombre = 42
-chaine = str(nombre)      # Vers chaîne: "42"
-entier = int("123")       # Vers entier: 123
-flottant = float("3.14")  # Vers flottant: 3.14
-liste = list("abc")       # Vers liste: ['a', 'b', 'c']
-tuple = tuple([1, 2, 3])  # Vers tuple: (1, 2, 3)
-ensemble = set([1, 2, 3]) # Vers ensemble: {1, 2, 3}
-
-# Conversion implicite
-resultat = 3 + 4.5  # int + float = float
-resultat = "abc" * 3  # str * int = str: "abcabcabc"
-```
-
-## 8. Exercices pratiques
-
-### Exercice 1 : Formateur de texte
-
-1. Créez un programme qui :
-   - Accepte un texte en entrée
-   - Compte le nombre de mots
-   - Trouve les mots les plus fréquents
-   - Formate le texte selon des règles spécifiques
-
-### Exercice 2 : Calculatrice multi-types
-
-1. Développez une calculatrice qui :
-   - Gère les entiers et les flottants
-   - Convertit automatiquement les types
-   - Gère les erreurs de division par zéro
-   - Affiche les résultats formatés
-
-### Exercice 3 : Gestion de collection
-
-1. Créez un programme qui :
-   - Stocke des données dans différentes structures
-   - Permet d'ajouter/supprimer des éléments
-   - Effectue des recherches efficaces
-   - Sauvegarde les données dans un fichier
+print(rapport1)
+print(rapport2)
 
 ## Ressources supplémentaires
 
