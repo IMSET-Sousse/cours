@@ -27,7 +27,7 @@
 ### Objectifs
 
 - Maîtriser les types de données fondamentaux en Python (int, float, str, list, tuple, dict, set, bool)
-- Comprendre et appliquer les opérations arithmétiques sur les différents types 
+- Comprendre et appliquer les opérations arithmétiques sur les différents types
 - Utiliser les méthodes spécifiques à chaque type de données
 
 ### Contenu

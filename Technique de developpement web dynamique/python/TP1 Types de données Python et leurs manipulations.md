@@ -243,37 +243,200 @@ mon_set.clear()         # Vidage de l'ensemble
 nombres_pairs = {x for x in range(10) if x % 2 == 0}
 ```
 
-## 6. Booléens (bool)
+## 6. Opérateurs Logiques et Booléens
 
-Les booléens sont des valeurs de vérité (True ou False).
+### Introduction aux Opérateurs Logiques
+
+Les opérateurs logiques en Python permettent de combiner des expressions booléennes pour former des conditions plus complexes. Ils sont essentiels pour le contrôle de flux et la prise de décision dans les programmes.
+
+### Opérateurs Booléens de Base
+
+#### AND (et)
+
+L'opérateur `and` retourne `True` uniquement si les deux opérandes sont `True`. Si le premier opérande est `False`, Python n'évalue même pas le second (court-circuit).
 
 ```python
-# Opérations logiques
-a = True
-b = False
-print(a and b)  # ET logique: False
-print(a or b)   # OU logique: True
-print(not a)    # NON logique: False
+# Exemples d'opérateur AND
+print(True and True)    # True
+print(True and False)   # False
+print(False and True)   # False
+print(False and False)  # False
 
-# Conversion en booléen
-print(bool(0))      # False
-print(bool(1))      # True
-print(bool(""))     # False
-print(bool("abc"))  # True
-print(bool([]))     # False
-print(bool([1]))    # True
-print(bool(None))   # False
+# Exemple pratique
+age = 25
+permis = True
+peut_conduire = age >= 18 and permis  # True
+```
 
-# Opérations de comparaison
+#### OR (ou)
+
+L'opérateur `or` retourne `True` si au moins un des opérandes est `True`. Si le premier opérande est `True`, Python n'évalue pas le second (court-circuit).
+
+```python
+# Exemples d'opérateur OR
+print(True or True)     # True
+print(True or False)    # True
+print(False or True)    # True
+print(False or False)   # False
+
+# Exemple pratique
+pluie = False
+parapluie = True
+peut_sortir = not pluie or parapluie  # True
+```
+
+#### NOT (non)
+
+L'opérateur `not` inverse la valeur booléenne de son opérande.
+
+```python
+# Exemples d'opérateur NOT
+print(not True)   # False
+print(not False)  # True
+
+# Exemple pratique
+est_ferme = False
+est_ouvert = not est_ferme  # True
+```
+
+### Priorité des Opérateurs Logiques
+
+La priorité des opérateurs logiques est la suivante (du plus prioritaire au moins prioritaire) :
+
+1. `not`
+2. `and`
+3. `or`
+
+```python
+# Exemple de priorité
+resultat = not True and False or True  # Équivaut à ((not True) and False) or True
+print(resultat)  # True
+```
+
+### Opérateurs de Comparaison
+
+Les opérateurs de comparaison retournent des valeurs booléennes (`True` ou `False`).
+
+```python
+# Opérateurs de comparaison
 x = 5
 y = 10
-print(x < y)    # True
-print(x > y)    # False
-print(x <= y)   # True
-print(x >= y)   # False
-print(x == y)   # False
-print(x != y)   # True
+
+# Égalité et différence
+print(x == y)  # False (égalité)
+print(x != y)  # True (différence)
+
+# Comparaisons numériques
+print(x < y)   # True (inférieur)
+print(x > y)   # False (supérieur)
+print(x <= y)  # True (inférieur ou égal)
+print(x >= y)  # False (supérieur ou égal)
+
+# Comparaisons de chaînes (ordre lexicographique)
+s1 = "abc"
+s2 = "def"
+print(s1 < s2)  # True
 ```
+
+### Opérateurs d'Identité
+
+Les opérateurs `is` et `is not` vérifient si deux objets sont le même objet en mémoire.
+
+```python
+# Opérateurs d'identité
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a is b)     # False (objets différents)
+print(a is c)     # True (même objet)
+print(a is not b) # True
+```
+
+### Opérateurs d'Appartenance
+
+Les opérateurs `in` et `not in` vérifient si un élément est présent dans une séquence.
+
+```python
+# Opérateurs d'appartenance
+liste = [1, 2, 3, 4, 5]
+chaine = "Bonjour"
+
+print(3 in liste)        # True
+print(6 not in liste)    # True
+print("jour" in chaine)  # True
+print("soir" not in chaine)  # True
+```
+
+### Combinaison d'Opérateurs
+
+Les opérateurs logiques peuvent être combinés pour former des conditions complexes.
+
+```python
+# Exemples de combinaisons
+age = 25
+permis = True
+experience = 2
+
+# Conditions complexes
+peut_conduire = age >= 18 and permis
+peut_location = age >= 21 and permis and experience >= 1
+peut_voiture_sport = age >= 25 and permis and experience >= 3
+
+# Utilisation de parenthèses pour clarifier
+condition = (age >= 18 and permis) or (age >= 16 and not permis)
+```
+
+### Exercices Pratiques
+
+1. Vérification d'âge et de permis
+
+```python
+age = 20
+permis = True
+experience = 1
+
+# Vérifie si la personne peut conduire une voiture de location
+peut_location = age >= 21 and permis and experience >= 1
+print(peut_location)  # False
+```
+
+2. Validation de mot de passe
+
+```python
+mot_de_passe = "Python123"
+longueur_ok = len(mot_de_passe) >= 8
+contient_maj = any(c.isupper() for c in mot_de_passe)
+contient_chiffre = any(c.isdigit() for c in mot_de_passe)
+
+mot_de_passe_valide = longueur_ok and contient_maj and contient_chiffre
+print(mot_de_passe_valide)  # True
+```
+
+3. Vérification de température
+
+```python
+temperature = 25
+humidite = 60
+vent = 15
+
+# Conditions météorologiques
+trop_chaud = temperature > 30
+trop_humide = humidite > 70
+trop_vent = vent > 20
+
+# Vérifie si les conditions sont favorables
+conditions_favorables = not (trop_chaud or trop_humide or trop_vent)
+print(conditions_favorables)  # True
+```
+
+### Bonnes Pratiques
+
+1. Utilisez des parenthèses pour clarifier l'ordre des opérations
+2. Évitez les conditions trop complexes - décomposez-les en plusieurs étapes
+3. Utilisez des variables intermédiaires pour améliorer la lisibilité
+4. Privilégiez les conditions positives plutôt que négatives
+5. Utilisez des noms de variables descriptifs pour les conditions
 
 ## 7. Conversion entre types
 
