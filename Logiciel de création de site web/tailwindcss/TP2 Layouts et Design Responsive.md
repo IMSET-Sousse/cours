@@ -137,70 +137,158 @@
 </div>
 ```
 
-## 4. Techniques Avancées
+## 4. Grilles Complexes
 
-### Aspect Ratio
+### Grille Magazine
 
 ```html
-<div class="aspect-w-16 aspect-h-9">
-  <img src="video-thumbnail.jpg" alt="Video" class="object-cover" />
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+  <!-- Article principal -->
+  <article class="md:col-span-8 lg:col-span-9">
+    <div class="aspect-w-16 aspect-h-9 mb-6">
+      <img src="main-article.jpg" alt="Article principal" class="object-cover rounded-lg" />
+    </div>
+    <h2 class="text-3xl font-bold mb-4">Titre de l'article principal</h2>
+    <p class="text-lg text-gray-600">Contenu de l'article...</p>
+  </article>
+
+  <!-- Sidebar -->
+  <aside class="md:col-span-4 lg:col-span-3">
+    <div class="sticky top-4 space-y-6">
+      <!-- Widget 1 -->
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold mb-4">Articles récents</h3>
+        <ul class="space-y-4">
+          <li>
+            <a href="#" class="hover:text-blue-600">Article 1</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-blue-600">Article 2</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
 </div>
 ```
 
-### Positionnement
+### Grille de Portfolio
 
 ```html
-<!-- Position relative -->
-<div class="relative">
-  <!-- Position absolue -->
-  <div class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1">
-    Nouveau
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+  <!-- Projet 1 -->
+  <div class="group relative overflow-hidden rounded-lg">
+    <img src="project1.jpg" alt="Projet 1" class="w-full h-64 object-cover" />
+    <div class="absolute inset-0 bg-black bg-opacity-60 group-hover:bg-opacity-40 transition-all duration-300">
+      <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <h3 class="text-white text-xl font-bold">Projet 1</h3>
+      </div>
+    </div>
   </div>
-  <!-- Contenu -->
-  <div class="p-4">Contenu</div>
+  <!-- Plus de projets... -->
 </div>
 ```
 
-### Z-index
+## 5. Typographie Responsive
+
+### Échelles de Typographie
+
+```html
+<div class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl">
+  <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
+    Titre Responsive
+  </h1>
+  <p class="text-base sm:text-lg md:text-xl">
+    Paragraphe avec taille de texte responsive
+  </p>
+</div>
+```
+
+### Espacement Responsive
+
+```html
+<div class="space-y-4 sm:space-y-6 md:space-y-8">
+  <h2 class="text-xl sm:text-2xl md:text-3xl">Titre</h2>
+  <p class="text-gray-600">Contenu avec espacement responsive</p>
+</div>
+```
+
+## 6. Images et Médias Responsives
+
+### Images Responsives
 
 ```html
 <div class="relative">
-  <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
-  <div class="relative z-20 bg-white p-4">Contenu</div>
+  <!-- Image de fond responsive -->
+  <div class="aspect-w-16 aspect-h-9">
+    <img 
+      src="image.jpg" 
+      alt="Description" 
+      class="object-cover w-full h-full"
+      srcset="
+        image-small.jpg 300w,
+        image-medium.jpg 600w,
+        image-large.jpg 1200w
+      "
+      sizes="(max-width: 640px) 300px,
+             (max-width: 1024px) 600px,
+             1200px"
+    />
+  </div>
+  
+  <!-- Overlay responsive -->
+  <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+    <h2 class="text-white text-2xl sm:text-3xl md:text-4xl font-bold">
+      Titre sur l'image
+    </h2>
+  </div>
 </div>
 ```
 
-## 5. Exercices Pratiques
+### Vidéo Responsive
 
-### Exercice 1 : Page de Dashboard
+```html
+<div class="relative aspect-w-16 aspect-h-9">
+  <iframe
+    class="absolute inset-0 w-full h-full"
+    src="https://www.youtube.com/embed/..."
+    title="Video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
+```
 
-Créez un dashboard responsive avec :
+## 7. Exercices Pratiques Supplémentaires
 
-- Une barre latérale rétractable
-- Un en-tête avec recherche
-- Des cartes de statistiques
-- Un tableau de données
-- Un graphique
+### Exercice 4 : Page d'Accueil Magazine
 
-### Exercice 2 : Galerie d'Images
+Créez une page d'accueil de magazine avec :
 
-Réalisez une galerie d'images responsive avec :
+- Grille complexe pour les articles
+- Typographie responsive
+- Images adaptatives
+- Sections variées
 
-- Une grille adaptative
-- Des images avec effet de survol
-- Un modal pour l'aperçu
-- Des filtres de catégories
+### Exercice 5 : Galerie d'Images Responsive
 
-### Exercice 3 : Page de Produit E-commerce
+Réalisez une galerie avec :
 
-Créez une page de produit avec :
+- Grille adaptative
+- Images optimisées
+- Lightbox responsive
+- Filtres adaptatifs
 
-- Une galerie d'images
-- Des informations produit
-- Des options de personnalisation
-- Un panier flottant
+### Exercice 6 : Page de Produit E-commerce
 
-## 6. Projet final du TP2
+Créez une page produit avec :
+
+- Galerie d'images responsive
+- Informations produit adaptatives
+- Options de personnalisation
+- Recommandations responsives
+
+## 8. Projet final du TP2
 
 Créez un site de portfolio responsive avec :
 
