@@ -1,4 +1,4 @@
-# TP1 : Types de données Python et leurs manipulations
+# TP2 : Types de données Python et leurs manipulations
 
 ## Objectifs du TP
 
