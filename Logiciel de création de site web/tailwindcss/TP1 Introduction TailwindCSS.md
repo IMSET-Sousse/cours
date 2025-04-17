@@ -162,6 +162,6 @@ Créez une page d'accueil pour un restaurant avec :
 
 ## Ressources supplémentaires
 
-- [Documentation officielle Tailwind CSS](https://tailwindcss.com/docs)
+- [Documentation officielle Tailwind CSS](https://tailwindcss.com/docs/installation/play-cdn)
 - [Tailwind UI](https://tailwindui.com/)
 - [Tailwind Components](https://tailwindcomponents.com/)
