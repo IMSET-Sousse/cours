@@ -1,15 +1,15 @@
-# TP4 : Fonctionnalités Avancées avec Tailwind CSS
+# TP4 : Fonctionnalités Avancées et Optimisation avec Tailwind CSS
 
 ## Objectifs du TP
 
-- Personnaliser l'apparence avec Tailwind
+- Personnaliser l'apparence de Tailwind
 - Créer des composants réutilisables
-- Gérer les thèmes et le mode sombre
-- Optimiser le code pour de meilleures performances
+- Gérer les thèmes
+- Optimiser les performances
 
-## 1. Personnalisation avec Tailwind
+## Note sur l'Utilisation du CDN
 
-### Configuration via CDN
+Tous les exemples de ce TP fonctionnent avec l'installation via CDN. Pour la personnalisation avancée, vous pouvez utiliser la configuration via CDN :
 
 ```html
 <!DOCTYPE html>
@@ -17,23 +17,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon Projet Tailwind</title>
+    <title>Mon Projet Avancé</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              brand: "#3b82f6",
-              "brand-dark": "#2563eb",
+              primary: '#3b82f6',
+              secondary: '#6b7280',
             },
             spacing: {
-              128: "32rem",
-              144: "36rem",
+              '128': '32rem',
+              '144': '36rem',
             },
-          },
-        },
-      };
+          }
+        }
+      }
     </script>
   </head>
   <body>
@@ -42,92 +42,99 @@
 </html>
 ```
 
-### Variables CSS Personnalisées
+## 1. Personnalisation via CDN
+
+### Configuration des Couleurs
 
 ```html
-<style>
-  :root {
-    --color-primary: #3b82f6;
-    --color-secondary: #6b7280;
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            light: '#f0f9ff',
+            DEFAULT: '#3b82f6',
+            dark: '#1d4ed8',
+          }
+        }
+      }
+    }
   }
-</style>
-```
+</script>
 
-## 2. Mode Sombre
-
-### Configuration du Mode Sombre
-
-```html
-<!DOCTYPE html>
-<html class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mode Sombre</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <!-- Votre contenu ici -->
-  </body>
-</html>
-```
-
-### Classes Conditionnelles
-
-```html
-<div
-  class="bg-white dark:bg-gray-800 
-            text-gray-900 dark:text-white"
->
-  Contenu adaptatif
+<div class="bg-brand-light text-brand-dark">
+  Contenu avec couleurs personnalisées
 </div>
 ```
 
-### Toggle du Mode Sombre
+### Configuration des Espacements
 
 ```html
-<button
-  class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
-  onclick="document.documentElement.classList.toggle('dark')"
->
-  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-    />
-  </svg>
-</button>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        spacing: {
+          '128': '32rem',
+          '144': '36rem',
+        }
+      }
+    }
+  }
+</script>
+
+<div class="p-128">
+  Contenu avec espacement personnalisé
+</div>
 ```
 
-## 3. Composants Réutilisables
+## 2. Composants Réutilisables
 
-### Classes Personnalisées
+### Création de Classes Personnalisées
 
 ```html
-<style>
-  .btn-primary {
-    @apply px-4 py-2 bg-blue-600 text-white rounded-lg 
-               hover:bg-blue-700 focus:outline-none focus:ring-2 
-               focus:ring-blue-500 focus:ring-offset-2 
-               transition-colors duration-200;
-  }
-
-  .card {
-    @apply bg-white rounded-lg shadow-md p-6 
-               hover:shadow-lg transition-shadow duration-300;
+<style type="text/tailwindcss">
+  @layer components {
+    .btn {
+      @apply px-4 py-2 rounded-lg font-semibold;
+    }
+    .btn-primary {
+      @apply bg-blue-600 text-white hover:bg-blue-700;
+    }
+    .btn-secondary {
+      @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+    }
   }
 </style>
+
+<button class="btn btn-primary">Bouton Primaire</button>
+<button class="btn btn-secondary">Bouton Secondaire</button>
 ```
 
-### Utilisation
+## 3. Gestion des Thèmes
+
+### Mode Sombre avec CDN
 
 ```html
-<button class="btn-primary">Cliquez-moi</button>
-<div class="card">
-  <h3>Titre de la carte</h3>
-  <p>Contenu...</p>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          dark: {
+            100: '#1a1a1a',
+            200: '#2a2a2a',
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<div class="bg-white dark:bg-dark-100 text-gray-900 dark:text-white">
+  Contenu avec support du mode sombre
 </div>
 ```
 
@@ -136,74 +143,34 @@
 ### Optimisation des Images
 
 ```html
-<picture>
-  <source media="(min-width: 768px)" srcset="image-large.jpg" />
-  <img src="image-small.jpg" alt="Image responsive" class="w-full h-auto" />
-</picture>
-```
-
-### Lazy Loading
-
-```html
-<img src="image.jpg" alt="Image" loading="lazy" class="w-full h-auto" />
-```
-
-## 5. Bonnes Pratiques
-
-### Organisation des Classes
-
-```html
-<!-- À éviter -->
-<div
-  class="p-4 bg-white rounded-lg shadow-md hover:shadow-lg 
-            transition-shadow duration-300 flex items-center 
-            justify-between space-x-4"
->
-  <!-- À privilégier -->
-  <div class="card flex items-center justify-between space-x-4"></div>
+<div class="relative">
+  <img 
+    src="image.jpg" 
+    alt="Description" 
+    class="w-full h-full object-cover"
+    loading="lazy"
+  />
 </div>
 ```
 
-### Extensions de Thème
+### Optimisation des Animations
 
 ```html
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ["Inter var", "sans-serif"],
-        },
-        animation: {
-          "bounce-slow": "bounce 3s infinite",
-        },
-      },
-    },
-  };
-</script>
+<div class="transform transition-transform duration-300 hover:scale-105 will-change-transform">
+  Élément avec animation optimisée
+</div>
 ```
 
-## 6. Exercices Pratiques
+## 5. Exercices Pratiques
 
-1. Créez un système de thème complet avec :
+### Exercice 1 : Système de Design
 
-   - Mode clair/sombre
-   - Variables CSS personnalisées
-   - Composants réutilisables
-   - Transitions fluides
+Créez un système de design avec :
 
-2. Optimisez une page web avec :
-
-   - Images responsives
-   - Lazy loading
-   - Classes optimisées
-   - Transitions performantes
-
-3. Créez une bibliothèque de composants avec :
-   - Classes personnalisées
-   - Variantes
-   - Documentation
-   - Exemples d'utilisation
+- Palette de couleurs personnalisée
+- Typographie personnalisée
+- Composants réutilisables
+- Support du mode sombre
 
 ## Ressources supplémentaires
 
