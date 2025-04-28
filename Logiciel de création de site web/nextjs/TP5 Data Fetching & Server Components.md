@@ -23,7 +23,7 @@
 ```jsx
 // app/components/ServerComponent.js
 async function getData() {
-  const res = await fetch('https://api.example.com/data');
+  const res = await fetch('https://fakestoreapi.com/products/1');
   return res.json();
 }
 
@@ -33,7 +33,13 @@ export default async function ServerComponent() {
   return (
     <div>
       <h1>Server Component</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <div className="product">
+        <img src={data.image} alt={data.title} style={{ maxWidth: '200px' }} />
+        <h2>{data.title}</h2>
+        <p>{data.description}</p>
+        <p>Prix: {data.price}€</p>
+        <p>Catégorie: {data.category}</p>
+      </div>
     </div>
   );
 }
@@ -74,7 +80,7 @@ export default function ClientComponent() {
 // app/products/page.js
 async function getProducts() {
   // Cette fonction s'exécute côté serveur
-  const res = await fetch('https://api.example.com/products', {
+  const res = await fetch('https://fakestoreapi.com/products', {
     next: {
       revalidate: 3600 // Revalidation toutes les heures
     }
@@ -96,9 +102,10 @@ export default async function ProductsPage() {
       <div className="products-grid">
         {products.map((product) => (
           <div key={product.id} className="product-card">
-            <h2>{product.name}</h2>
+            <h2>{product.title}</h2>
             <p>{product.description}</p>
             <p>Prix: {product.price}€</p>
+            <p>Catégorie: {product.category}</p>
           </div>
         ))}
       </div>
@@ -116,20 +123,26 @@ export default async function ProductsPage() {
 ```jsx
 // app/blog/[slug]/page.js
 export async function generateStaticParams() {
-  const posts = await fetch('https://api.example.com/posts').then(r => r.json());
+  const posts = await fetch('https://fakestoreapi.com/products').then(r => r.json());
   
   return posts.map((post) => ({
-    slug: post.slug,
+    slug: post.id.toString(),
   }));
 }
 
 export default async function BlogPost({ params }) {
-  const post = await fetch(`https://api.example.com/posts/${params.slug}`).then(r => r.json());
+  const post = await fetch(`https://fakestoreapi.com/products/${params.slug}`).then(r => r.json());
   
   return (
     <article>
       <h1>{post.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      <div className="product-details">
+        <img src={post.image} alt={post.title} style={{ maxWidth: '300px' }} />
+        <p>{post.description}</p>
+        <p>Prix: {post.price}€</p>
+        <p>Catégorie: {post.category}</p>
+        <p>Note: {post.rating.rate}/5 ({post.rating.count} avis)</p>
+      </div>
     </article>
   );
 }
@@ -142,17 +155,17 @@ export default async function BlogPost({ params }) {
 export const dynamic = 'force-dynamic';
 
 export default async function DashboardPage() {
-  const data = await fetch('https://api.example.com/stats', { cache: 'no-store' });
-  const stats = await data.json();
+  const data = await fetch('https://fakestoreapi.com/products/categories', { cache: 'no-store' });
+  const categories = await data.json();
   
   return (
     <div>
       <h1>Tableau de Bord</h1>
       <div className="stats-grid">
-        {Object.entries(stats).map(([key, value]) => (
-          <div key={key} className="stat-card">
-            <h3>{key}</h3>
-            <p>{value}</p>
+        {categories.map((category) => (
+          <div key={category} className="stat-card">
+            <h3>{category}</h3>
+            <p>Catégorie de produits</p>
           </div>
         ))}
       </div>
@@ -171,17 +184,17 @@ export default async function DashboardPage() {
 // app/utils/data.js
 export async function getData(type) {
   // Données mises en cache pendant 1 heure
-  const cached = await fetch(`https://api.example.com/${type}`, {
+  const cached = await fetch(`https://fakestoreapi.com/${type}`, {
     next: { revalidate: 3600 }
   });
 
   // Données jamais mises en cache
-  const fresh = await fetch(`https://api.example.com/${type}`, {
+  const fresh = await fetch(`https://fakestoreapi.com/${type}`, {
     cache: 'no-store'
   });
 
   // Données mises en cache indéfiniment (ISR)
-  const static = await fetch(`https://api.example.com/${type}`, {
+  const static = await fetch(`https://fakestoreapi.com/${type}`, {
     cache: 'force-cache'
   });
 
@@ -214,4 +227,4 @@ export async function getData(type) {
 
 - [Documentation Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 - [Guide Data Fetching](https://nextjs.org/docs/app/building-your-application/data-fetching)
-- [Stratégies de Cache](https://nextjs.org/docs/app/building-your-application/caching) 
+- [Stratégies de Cache](https://nextjs.org/docs/app/building-your-application/caching)
