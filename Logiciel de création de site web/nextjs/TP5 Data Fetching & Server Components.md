@@ -228,3 +228,4 @@ export async function getData(type) {
 - [Documentation Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 - [Guide Data Fetching](https://nextjs.org/docs/app/building-your-application/data-fetching)
 - [Stratégies de Cache](https://nextjs.org/docs/app/building-your-application/caching)
+- [Fake Store API Documentation](https://fakestoreapi.com/docs)
