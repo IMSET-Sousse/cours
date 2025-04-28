@@ -22,6 +22,8 @@
 
 ```jsx
 // app/components/ServerComponent.js
+import Image from 'next/image';
+
 async function getData() {
   const res = await fetch('https://fakestoreapi.com/products/1');
   return res.json();
@@ -34,7 +36,13 @@ export default async function ServerComponent() {
     <div>
       <h1>Server Component</h1>
       <div className="product">
-        <img src={data.image} alt={data.title} style={{ maxWidth: '200px' }} />
+        <Image 
+          src={data.image} 
+          alt={data.title} 
+          width={200}
+          height={200}
+          style={{ objectFit: 'contain' }}
+        />
         <h2>{data.title}</h2>
         <p>{data.description}</p>
         <p>Prix: {data.price}€</p>
@@ -78,6 +86,9 @@ export default function ClientComponent() {
 
 ```jsx
 // app/products/page.js
+import Image from 'next/image';
+import Link from 'next/link';
+
 async function getProducts() {
   // Cette fonction s'exécute côté serveur
   const res = await fetch('https://fakestoreapi.com/products', {
@@ -102,10 +113,22 @@ export default async function ProductsPage() {
       <div className="products-grid">
         {products.map((product) => (
           <div key={product.id} className="product-card">
-            <h2>{product.title}</h2>
-            <p>{product.description}</p>
+            <Link href={`/blog/${product.id}`}>
+              <Image 
+                src={product.image} 
+                alt={product.title}
+                width={150}
+                height={150}
+                style={{ objectFit: 'contain' }}
+              />
+              <h2>{product.title}</h2>
+            </Link>
+            <p>{product.description.substring(0, 100)}...</p>
             <p>Prix: {product.price}€</p>
             <p>Catégorie: {product.category}</p>
+            <Link href={`/blog/${product.id}`} className="view-details">
+              Voir détails
+            </Link>
           </div>
         ))}
       </div>
@@ -122,6 +145,9 @@ export default async function ProductsPage() {
 
 ```jsx
 // app/blog/[slug]/page.js
+import Image from 'next/image';
+import Link from 'next/link';
+
 export async function generateStaticParams() {
   const posts = await fetch('https://fakestoreapi.com/products').then(r => r.json());
   
@@ -137,11 +163,21 @@ export default async function BlogPost({ params }) {
     <article>
       <h1>{post.title}</h1>
       <div className="product-details">
-        <img src={post.image} alt={post.title} style={{ maxWidth: '300px' }} />
+        <Image 
+          src={post.image} 
+          alt={post.title} 
+          width={300}
+          height={300}
+          style={{ objectFit: 'contain' }}
+          priority
+        />
         <p>{post.description}</p>
         <p>Prix: {post.price}€</p>
         <p>Catégorie: {post.category}</p>
         <p>Note: {post.rating.rate}/5 ({post.rating.count} avis)</p>
+        <Link href="/products" className="back-button">
+          Retour aux produits
+        </Link>
       </div>
     </article>
   );
@@ -152,6 +188,8 @@ export default async function BlogPost({ params }) {
 
 ```jsx
 // app/dashboard/page.js
+import Link from 'next/link';
+
 export const dynamic = 'force-dynamic';
 
 export default async function DashboardPage() {
@@ -166,6 +204,9 @@ export default async function DashboardPage() {
           <div key={category} className="stat-card">
             <h3>{category}</h3>
             <p>Catégorie de produits</p>
+            <Link href={`/category/${encodeURIComponent(category)}`}>
+              Voir les produits
+            </Link>
           </div>
         ))}
       </div>
