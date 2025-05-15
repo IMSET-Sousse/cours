@@ -1,4 +1,4 @@
-# TP5: Bases de Données avec Flask et PostgreSQL
+# TP4: Bases de Données avec Flask et PostgreSQL
 
 ## Objectifs d'apprentissage
 

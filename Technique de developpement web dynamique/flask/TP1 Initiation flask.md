@@ -1,124 +1,218 @@
 # TP1: Initiation à Flask
 
+![Flask Logo](assets/flask-logo.webp)
+
 ## Objectifs
 
-- Comprendre les bases de Flask
-- Apprendre à configurer un environnement Flask
-- Créer votre première route Flask
+- Comprendre les bases de Flask et son architecture
+- Configurer un environnement de développement Python professionnel
+- Maîtriser la gestion des dépendances avec pipenv
+- Créer et exécuter une première application Flask
+- Comprendre le cycle de vie d'une requête Flask
 
-## Étapes pour exécuter le projet
+## Prérequis
 
-1. Installer `pipenv` pour gérer l'environnement virtuel et les dépendances :
+- Python 3.8+ installé sur votre machine
+- Un éditeur de code (VS Code recommandé)
+- Connaissances de base en Python
 
-    ```bash
-    pip install pipenv
-    ```
+## Étapes Détaillées
 
-2. Cree dossier TP1 et se placer dedans:
+### 1. Préparation de l'Environnement
 
-    ```bash
-    mkdir TP1
-    cd TP1
-    ```
+#### Installation de Python
 
-3. Installer les packages requis avec `pipenv`.
+1. Vérifiez votre version de Python :
 
-Voici les différentes options :
-Option 1 - Installation directe avec pipenv :
+   ```bash
+   python --version
+   # ou
+   python3 --version
+   ```
+
+   Si Python n'est pas installé ou si la version est < 3.8, téléchargez-le depuis [python.org](https://www.python.org/downloads/)
+
+2. Vérifiez que pip est installé :
+
+   ```bash
+   pip --version
+   # ou
+   pip3 --version
+   ```
+
+#### Installation de pipenv
+
+pipenv est un outil moderne pour gérer les environnements virtuels Python et les dépendances du projet.
 
 ```bash
-pipenv install flask
+# Installation globale de pipenv
+pip install pipenv
+
+# Vérification de l'installation
+pipenv --version
 ```
 
-Option 2 - Installation explicite avec python -m :
+### 2. Configuration du Projet
 
-```bash
-# Pour Python 3
-python -m pipenv install flask
+1. Naviguez vers votre bureau :
+2. Créez un nouveau dossier pour votre projet :
+
+   ```bash
+   mkdir mon_projet_flask
+   cd mon_projet_flask
+   ```
+
+3. Initialisez un environnement virtuel avec Flask :
+
+   ```bash
+   # Création de l'environnement virtuel et installation de Flask
+   pipenv install flask
+   ```
+
+   Cette commande va :
+
+   - Créer un nouvel environnement virtuel
+   - Installer Flask et ses dépendances
+   - Créer les fichiers Pipfile et Pipfile.lock
+
+### 3. Structure du Projet
+
+Créez la structure de base suivante :
+
+```plaintext
+mon_projet_flask/
+├── Pipfile           # Fichier de dépendances de pipenv
+├── Pipfile.lock     # Verrouillage des versions des dépendances
+├── app.py           # Point d'entrée de l'application
+└── README.md        # Documentation du projet
 ```
 
-Option 3 - Installation avec python3 explicite :
+### 4. Création de l'Application
 
-```bash
-# Pour les systèmes utilisant python3
-python3 -m pipenv install flask
+Créez le fichier `app.py` avec le code minimal suivant :
+
+```python
+from flask import Flask
+
+# Création de l'instance de l'application
+app = Flask(__name__)
+
+# Définition de la route racine
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+# Point d'entrée de l'application
+if __name__ == '__main__':
+    # Active le mode debug pour le développement
+    app.run(debug=True)
 ```
 
-L'option 1 est recommandée si pipenv est correctement configuré dans votre PATH.
-L'option 2 est utile si vous avez des problèmes avec l'option 1.
-L'option 3 est nécessaire sur certains systèmes où python3 doit être explicitement spécifié.
+### 5. Lancement de l'Application
 
-1. Créer un fichier nommé `app.py` et ajouter le code suivant :
+1. Activez l'environnement virtuel :
 
-    ```python
-    from flask import Flask
+   ```bash
+   pipenv shell
+   ```
 
-    app = Flask(__name__)
+2. Lancez l'application :
 
-    @app.route('/')
-    def hello_world():
-        return 'Hello, World!'
+   ```bash
+   python app.py
+   ```
 
-    if __name__ == '__main__':
-        app.run(debug=True)
-    ```
+3. Visitez http://127.0.0.1:5000 dans votre navigateur
 
-2. Activer l'environnement virtuel :
+### 6. Configuration de VS Code (Recommandé)
 
-    Option 1 - Activation directe avec pipenv :
+Pour une meilleure expérience de développement :
 
-    ```bash
-    pipenv shell
-    ```
+1. Installez les extensions VS Code recommandées :
 
-    Option 2 - Activation explicite avec python -m :
+   - Python (Microsoft)
+   - Python Debugger
+   - Python Environment Manager
+   - Python Indent
+   - autoDocstring - Python
 
-    ```bash
-    # Pour Python 3
-    python -m pipenv shell
-    ```
+2. Configurez l'interpréteur Python :
+   - Appuyez sur `Ctrl+Shift+P` (Windows/Linux) ou `Cmd+Shift+P` (Mac)
+   - Tapez "Python: Select Interpreter"
+   - Sélectionnez l'environnement virtuel créé par pipenv
 
-    Option 3 - Activation avec python3 explicite :
+## Points Importants à Retenir
 
-    ```bash
-    # Pour les systèmes utilisant python3
-    python3 -m pipenv shell
-    ```
+### Architecture Flask
 
-3. Activer l'environnement virtuel :
+- Flask suit le pattern de conception "microframework"
+- Une application Flask est une instance de la classe `Flask`
+- Les routes définissent comment l'application répond aux requêtes URL
+- Le mode debug permet le rechargement automatique et des messages d'erreur détaillés
 
-    ```bash
-    pipenv shell
-    ```
+### Environnement Virtuel
 
-4. Exécuter l'application Flask :
+- Isole les dépendances du projet
+- Évite les conflits entre différents projets
+- Facilite la reproduction de l'environnement
+- Pipfile liste toutes les dépendances du projet
 
-    ```bash
-    pipenv run python app.py
-    ```
+### Bonnes Pratiques
 
-## Structure du Projet
+1. **Gestion des Dépendances**
 
-Voici la structure de dossiers attendue pour ce projet :
+   - Toujours utiliser un environnement virtuel
+   - Maintenir à jour le Pipfile
+   - Spécifier les versions des dépendances
 
-``` bash
-TP1/
-├── app.py         # Application principale Flask
-├── Pipfile        # Fichier de dépendances Pipenv
-├── Pipfile.lock   # Verrouillage des versions des dépendances
-```
+2. **Organisation du Code**
 
-Cette structure est la base recommandée pour un projet Flask.
+   - Un fichier par fonctionnalité
+   - Séparer la configuration de l'application
+   - Utiliser des commentaires descriptifs
 
-## Exercices
+3. **Sécurité**
+   - Ne jamais désactiver le debug en production
+   - Ne pas exposer d'informations sensibles
+   - Suivre les recommandations de sécurité Flask
 
-1. Modifiez la route principale pour afficher "Bonjour, [votre nom]!" au lieu de "Hello, World!"
-2. Ajoutez une nouvelle route `/date` qui affiche la date actuelle
-3. Créez une route `/info` qui affiche des informations sur vous
+## Résolution des Problèmes Courants
 
-## Conseils
+### 1. Erreur "Port already in use"
 
-- Utilisez la documentation officielle de Flask comme référence
-    see [Documentation Flask](https://flask.palletsprojects.com/en/latest/)
-- N'oubliez pas de redémarrer le serveur après chaque modification
-- Vérifiez que vous êtes dans le bon environnement virtuel
+**Symptôme** : L'application ne démarre pas, message d'erreur mentionnant le port 5000.
+
+**Solutions** :
+
+- Fermez toutes les instances Python en cours
+- Changez le port dans `app.run()` :
+
+  ```python
+  app.run(debug=True, port=5001)
+  ```
+
+### 2. Problèmes avec pipenv
+
+**Symptôme** : Commandes pipenv non reconnues
+
+**Solutions** :
+
+- Réinstallez pipenv : `pip install --user --upgrade pipenv`
+- Utilisez `python -m pipenv` au lieu de `pipenv`
+
+### 3. Erreurs d'Import
+
+**Symptôme** : ModuleNotFoundError lors de l'import de Flask
+
+**Solutions** :
+
+- Vérifiez que vous êtes dans l'environnement virtuel
+- Réinstallez Flask : `pipenv install flask`
+- Vérifiez le Pipfile
+
+## Ressources Utiles
+
+- [Documentation officielle Flask](https://flask.palletsprojects.com/)
+- [Documentation pipenv](https://pipenv.pypa.io/)
+- [Guide de démarrage Flask](https://flask.palletsprojects.com/quickstart/)
+- [Python Virtual Environments](https://docs.python.org/3/tutorial/venv.html)
